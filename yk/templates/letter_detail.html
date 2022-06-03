@@ -1,0 +1,166 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'letter_detail.css' %}">
+ <div class="black_bg"></div>
+{% endblock %}
+{% block content %}
+  <div class="header">
+    <a href="{% url 'yk:letter_main' %}"><i class="fas fa-arrow-left"></i></a>
+    <div style="display:flex; flex-direction: row; align-items:center; justify-content:center;">
+      <a href="{% url 'yk:friend_profile' friend.pk %}">
+      <div class="profileImgWrapper">
+        <img src="{{friend.profile.all.first.profile_image.url}}" alt="profile"/>
+      </div>
+      </a>
+      <a href="{% url 'yk:friend_profile' friend.pk %}">
+      <p style="font-size:1rem;font-family: 'Spoqa Han Sans Neo'; font-weight: 700;">{{ friend.profile.all.first.nickname }}</p>
+      </a>
+    </div>
+    <div class="menuWrapper">
+      <div class="push_on">
+        <form method="POST">
+        {% csrf_token %}
+        {% if on %}
+        <button class="push"><i class="far fa-bell"></i></button>
+        {% else %}
+        <button class="push"><i class="far fa-bell-slash"></i></button>
+        {% endif %}
+        </form>
+        </div>
+      <!-- <a href="{% url 'yk:letter_write' friend.pk %}"><i class="fas fa-paper-plane"></i></a> -->
+      <!-- <div ><i class="fas fa-ellipsis-v"></i></div> -->
+      <label for="menu" class="menu-trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>  
+    </div>
+  </div>
+ 
+  <div class="letterContainer">
+
+      <div class="modal_wrap1">
+        <h3>{{ friend.profile.all.first.nickname }} 님을 차단하시겠어요?</h3>
+       <p>차단 된 상대방은 친구목록에서 삭제되며<br> 쪽지가 불가능해집니다.</p>
+        <a href="{% url 'yk:stop_friend' friend.pk %}"><div class="accept">차단하기</div></a>
+        <div class="cancel1 cancel">취소하기</div>
+      </div>
+      <div class="modal_wrap2">
+        <h3>{{ friend.profile.all.first.nickname }}</h3>
+       <p>쪽지를 전부 삭제할까요?</p>
+        <a href="{% url 'yk:hide_letter' friend.pk %}"><div class="accept">삭제하기</div></a>
+        <div class="cancel2 cancel">취소하기</div>
+      </div>
+  {% if letters %}
+    {% for letter in letters %}
+    {% if letter.writer == friend %}
+    <div class="friend_letterContainer letterWrapper"  style="width: 100%; overflow: hidden;">
+      <div style="display: flex; justify-content: space-between; ">
+        <p class="received letterTitle"><strong>받은쪽지({{ friend.profile.all.first.nickname }})</strong></p>
+        <p class="time">{{ letter.created_at|timesince }}전</p>
+      </div>
+      <span class="letterContent">{{ letter.content }}</span>
+    </div>
+    {% else %}
+    <div class="my_letterContainer letterWrapper" style="width: 100%; overflow: hidden;">
+      <div style="display: flex; justify-content: space-between;">
+        <p class="sent letterTitle">보낸쪽지(나)</p>
+        <p class="time">{{ letter.created_at|timesince }}전</p>
+      </div>
+      <span class="letterContent">{{ letter.content }}</span>
+    </div>
+    {% endif %}
+    {% endfor %}
+  {% else %}
+      <div style="width: 100%; height:70vh; display:flex; justify-content: center; align-items: center; font-size: 1rem; color: #A7B0C0;">쪽지가 없습니다</div>
+    {% endif %}
+    <div class="writeContainer">
+      <form method="POST" action="{% url 'yk:letter_write' friend.pk %}">
+        {% csrf_token %}
+      <div class="writeWrapper">
+        <textarea required class="letterWriteContent" name="letter_content" placeholder="내용을 입력하세요. 매너있는 채팅 부탁드려요" ></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+      </div>
+      </form>
+    </div>
+    <input type="checkbox" id="menu">
+    <nav id="menuNav">
+      <a onClick="window.location.reload()"><li>새로고침</li></a>
+      <li id="modal_btn1">차단</li>
+      <li>
+        <form method="POST">
+          {% csrf_token %}
+        {% if on %}
+        <button class="push"><i class="far fa-bell-slash" style="margin-right: 4px;"></i>이 방의 알림 끄기</button>
+        {% else %}
+        <button class="push"><i class="far fa-bell" style="margin-right: 4px;"></i>이 방의 알림 켜기</button>
+        {% endif %}
+        </form>
+      </li>
+      <!-- 차단하기 눌렀을 때 진짜 차단할 거냐고 물어보는 모달 띄우기 -->
+      <li id="modal_btn2">쪽지 전체 삭제</li>
+      <a href="http://pf.kakao.com/_GxnsBs/chat"><li>신고</li></a>
+    </nav>
+  </div>
+  <script>
+    // const menuBtn = document.querySelector('.menu')
+    const bg = document.querySelector(".black_bg")
+    // const menu = document.getElementById("menuNav")
+    // menuBtn.addEventListener("click", e => {
+    //      bg.style.display = "flex"
+    // })
+    // menu.addEventListener("click", e => {
+    // const evTarget = e.target
+    // if(evTarget.classList.contains("black_bg")) {
+    //     menu.style.display = "none"
+    //     bg.style.display = "none"
+    // }
+    // })
+
+
+    const modal1 = document.querySelector(".modal_wrap1")
+    
+    const btnModal1 = document.getElementById("modal_btn1")
+    btnModal1.addEventListener("click", e => {
+        modal1.style.display = "flex"
+        bg.style.display = "flex"
+    })
+
+    const modal2 = document.querySelector(".modal_wrap2")
+    const btnModal2 = document.getElementById("modal_btn2")
+    btnModal2.addEventListener("click", e => {
+        modal2.style.display = "flex"
+        bg.style.display = "flex"
+    })
+    const cancel1 = document.querySelector(".cancel1")
+    cancel1.addEventListener("click", e => {
+ 
+      modal1.style.display = "none"
+    
+    bg.style.display = "none"
+    })
+    const cancel2 = document.querySelector(".cancel2")
+    cancel2.addEventListener("click", e => {
+      modal2.style.display = "none"
+
+    
+    bg.style.display = "none"
+    })
+
+
+    const menuTrigger = document.querySelector('.menu-trigger');
+    menuTrigger.addEventListener('click', (event) => {
+      event.currentTarget.classList.toggle('active-1');
+    });
+</script>
+<!-- <script type="text/javascript">
+  function resize(obj) {
+      obj.style.height = "1px";
+      obj.style.height = (12 + obj.scrollHeight) + "px";
+  }
+
+
+</script> -->
+{% endblock %}

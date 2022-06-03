@@ -1,0 +1,74 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'new.css' %}">
+{% endblock %}
+{% block content %}
+<div class="top-navbar">
+    <div id="back">
+        <a href="{% url 'ykboard:home' %}"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <div class="header">글 수정</div>
+    <div></div>
+</div>
+<form method="post">
+    {% csrf_token %}
+    <div class="writeContainer">
+        <div style="width: 88%; margin: 0 auto;">
+            <textarea onkeydown="resize(this);checkContent();" onkeyup="resize(this);checkContent();" required  name="content" id="content" cols="30" rows="10">{{post.content}}</textarea>
+        </div>
+        <button type="submit" disabled="true" id="submit">글 수정하기</button>
+    </div>
+</form>
+<div id="info">
+    ※ 연고링 게시판 이용 규칙<br><br>
+    연고링은 원활한 서비스를 위해 다음과 같은 이용규칙을 적용하고 있으며, 규칙 위반 행위가 적발될 경우 관리자는 글 삭제 및 계정 삭제 등의 조치를 취할 수 있습니다.<br>
+    <br>
+    1) 이용자의 권리를 침해하는 행위를 금지합니다.<br>
+    - 타인의 권리를 침해하는 글<br>
+    - 특정 인물의 개인정보가 포함된 글<br>
+    - 불법 행위를 조장하거나 종용하는 글<br>
+    - 음란물 또는 성적 수치심을 유발하는 글<br>
+    - 개인·집단·지역·종교·인종 등에 대한 욕설, 차별, 비하, 혐오표현 등을 포함한 글<br>
+    <br>
+    2) 영리적 홍보 및 판매 관련 글의 게시를 금지합니다.<br>
+    - 영리적 이윤을 추구하는 사업체, 기관, 단체, 개인과 직간접적으로 관련된 것으로 예상될 수 있는 홍보 글<br>
+    <br>
+
+
+</div>
+<script type="text/javascript">
+
+     window.onload = function checkContent() {
+        const writeContent = document.getElementById("content");
+        const submitWrite = document.getElementById("submit");
+        if(writeContent.value.length != 0) {
+            submitWrite.style.backgroundColor = "#25D482"
+            submitWrite.style.cursor = "pointer";
+            submitWrite.disabled = false;
+        } else if(writeContent.value.length == 0){
+            submitWrite.disabled = true;
+            submitWrite.style.cursor = "default";
+            submitWrite.style.backgroundColor ="#C5C9CD"
+        }
+    }
+    function checkContent() {
+        const writeContent = document.getElementById("content");
+        const submitWrite = document.getElementById("submit");
+        if(writeContent.value.length != 0) {
+            submitWrite.style.backgroundColor = "#25D482";
+            submitWrite.style.cursor = "pointer";
+            submitWrite.disabled = false;
+        } else if(writeContent.value.length == 0){
+            submitWrite.disabled = true;
+            submitWrite.style.cursor = "default";
+            submitWrite.style.backgroundColor ="#C5C9CD";
+        }
+    }
+    function resize(obj) {
+            obj.style.height = "1px";
+            obj.style.height = (12 + obj.scrollHeight) + "px";
+        }
+</script>
+{% endblock %}

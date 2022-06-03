@@ -1,0 +1,47 @@
+#changeSubmit {
+    all:unset;
+    width: 80%;
+    height:56px;
+    background: #25D482;
+    border-radius:8px;
+    color: white;
+    cursor: pointer;
+    margin-top: 100px;
+
+}
+#changeSubmit:hover {
+    background: #167a4c;
+}
+form {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input {
+    width: 80%;
+    height: 40px;
+    border: 1px solid #e1e3e6;
+    border-radius: 5px;
+}
+ul{
+    list-style:none;
+    text-align: center;
+    padding-left:0px;
+}
+.helptext {
+    display:flex;
+    align-items: flex-start;
+    font-size: 0.875rem;
+    width: 80%;
+}
+li {    
+    display:flex;
+    text-align: left;
+    font-size: 0.875rem;
+    margin-bottom: 12px;
+
+}
+.errorlist {
+    color: red;
+}

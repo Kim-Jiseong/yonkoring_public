@@ -1,0 +1,48 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'join3.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="top-navbar">
+            <div id="back">
+                <a href="{% url 'registrations:join2' %}"><i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+        <header class="header">
+            <div id="header_title">선택사항</div>
+            <div id="header_info">관심사나 대화하고 싶은 주제를 적어주세요! </div>
+        </header>
+        <form action="{% url 'registrations:join3' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+        <div class="interest_wrapper">
+            <input class="interest introduce" type="text" placeholder="관심사 입력하기" name ="interest"/>
+            <div class="interest_info">
+                #스타트업 #맛집탐방 #친구만들기 등등
+            </div>
+        </div>
+        <br>
+        <br>
+        <div id="antecedents">활동이력을 적고 관련 친구들을 만나보세요.</div>
+
+        <div class="intro_urself">
+            <textarea name="introduce" class="introduce introduce1" onkeydown="resize(this);" onkeyup="resize(this);" placeholder="전공/가입한 동아리/학회 활동/근무회사 등등"></textarea>
+        </div>
+        <div id="page">2/2 페이지</div>
+        <div class="buttonWrapper">
+            <a id="skip" href="{% url 'yk:join_done' %}">건너뛰기</a>
+            <button id="submit" type="submit">확인</button>
+        </div>
+        <div id="yb"></div>
+
+
+        <script type="text/javascript">
+                function resize(obj) {
+                obj.style.height = "1px";
+                obj.style.height = (12+obj.scrollHeight)+"px";
+        }
+        </script>
+{% endblock %}

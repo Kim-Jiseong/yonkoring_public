@@ -1,0 +1,97 @@
+{% extends 'base.html' %}{% load static %}
+{% load socialaccount %} {% providers_media_js %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <a rel="noopener noreferrer" target="_blank" href="https://pf.kakao.com/_GxnsBs/chat"><div class="question"> 서비스 문의하기 </div></a>
+
+    <div class="titleContainer">
+      <div id="beta">Beta</div>
+        <div id="title_info1">
+          10시에 만나는 고연대친구
+        </div>
+        <div id="title_wrapper">
+          <div id="title">연고링</div>
+          <img style="width:3rem; height:3rem; margin-bottom: 10px;" src="{% static 'image 650.png' %}" alt="">
+          <img style="width:4rem; height:4rem;" src="{% static 'image 649.png' %}" alt="">
+  
+        </div>
+      </div>
+      <div class="center">
+        {% if error %}
+        <p style="color:red;">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <input class="loginInput" type="text" id="username" name="username" value="{{ username }}" placeholder="이메일"><br>
+            <input  class="loginInput" type="password" id="password" name="password" placeholder="비밀번호"><br>
+            <button class="callSubmit" type="submit">시작하기</button>
+        </form>
+        <div class="selectOptions">
+            <!-- <a>아이디/비밀번호 찾기</a> -->
+            <div><a rel="noopener noreferrer" target="_blank" href="http://pf.kakao.com/_GxnsBs/chat">비밀번호 찾기</a></div>
+            <div style="width:1px; height: 15px; background-color: #929DA9;"></div>
+            <div><a href="{% url 'registrations:signup' %}">회원가입</a></div>
+        </div>
+      </div>
+
+    <p id="use_info1">
+    <strong>사용방법</strong>
+    <br>
+    <br>
+    
+    대학생활을 하며 평생을 함께 할 친구를 만나기도 하는데요.<br> 코로나로 그런 기회가 많이 없어졌죠? 연고링은 고대/연대 친구들을 보이스톡으로 사귈 수 있게 해주는 연고대 소셜 대화 플랫폼이에요!
+
+    <br>
+    <br>
+    <strong>
+    1. 랜덤으로 대화코드맞는 친구들과 오후 8시부터 새벽 2시까지 통화하기<br>
+    2. 통화 한 친구들에게 친구 신청 보내기<br>
+    3. 서로 친구가 된 사람들과 쪽지로 더 친해지기
+    </strong>
+    <br>
+    <br>
+    </p>
+    <p class="use_info2">
+        <strong>♥ 연고링 매력 포인트 ♥</strong><br>
+        블러효과로 통화할 수록 친구의 프로필이 선명해져요!<br>
+        (잠깐! 프로필은 꼭 얼굴사진이 아니어도 괜찮아요.)<br>
+        다른 과 다른 학교 대학 친구들과 이야기 가능!<br>
+    취.향.저.격. 대학친구와 취향 이야기 하며 밤새기 가능!<br>
+    사소한 고민, 소소한 일상을  나누면서 친해지기 가능!
+    </p>
+    <div id="warning_wrapper">
+        <div id="warning">※주의※</div>
+        <div id="warning_info1"><strong>연고링은 데이팅이 아닌 대학친구사귀기 서비스입니다. </strong><br>현재는 연고대 학생들만 가능합니다. <br> ( 다른 학교 학생 분들은 서비스 자세히 보기에서 학교를 신청해주세요 )</div>
+
+    </div>
+    <a target="_blank" rel="noopener noreferrer" href="https://ykring.notion.site/ykring/8-030bf6f3750243b2b7e1becb7c0b0a50">
+    <div class="service_info_wrapper">
+            <div class="service_info">
+                서비스 소개 자세히 보기 </div>
+                <i class="fas fa-arrow-circle-right"></i>
+    </div></a>
+        <div id="yb"></div>
+    <div class="teamInfo">
+      <div class="teamLink1">
+        <a rel="noopener noreferrer" target="_blank" href="https://pf.kakao.com/_GxnsBs/chat"><img style="width:24px; height: 24px;" src="{% static 'kakao circle.png' %}"/></a>
+        <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/channel/UCev1islBkJuHDZgbdcGOnlg"><img style="width:24px; height: 24px;" src="{% static 'youtube circle.png' %}"/></a>
+        <a rel="noopener noreferrer" target="_blank" href="https://www.instagram.com/ykring_official/"><img style="width:24px; height: 24px;" src="{% static 'instagram circle.png' %}"/></a>
+
+      </div>
+      <p><b>(팀)연고링</b></p>
+      <p>서울특별시 성북구 안암로 145 , 2층 214호 경영본관</p>
+      <p>사업자등록번호 749-16-01653</p>
+      <div class="teamLink2">
+        <a rel="noopener noreferrer" target="_blank" href="https://ykring.notion.site/d9aaf675a78d4cfe935a5c218f99d56a">이용약관</a>
+        <a rel="noopener noreferrer" target="_blank" href="https://ykring.notion.site/3e353b25e1ec48f38cff74970548c97f">개인정보처리방침</a>
+        <a rel="noopener noreferrer" target="_blank" href="https://pf.kakao.com/_GxnsBs/chat">문의하기</a>
+      </div>
+      <p>Copyright ⓒ 연고링 | 대학생 소셜 디스커버리  All rights reserved.</p>
+    </div>
+
+</div>
+{% endblock %}

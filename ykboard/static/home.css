@@ -1,0 +1,223 @@
+/* footer 수정 */
+.callIcon {
+    opacity: 0.3;
+}
+
+.communityIcon {
+    opacity: 1;
+}
+/* ----- */
+.container {
+    position: relative;
+}
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 88%;
+    height: 60px;
+    padding: 14px 6% 0 6%;
+}
+
+.updateNotice {
+    width: 84%;
+    height: 60px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    align-items: center;
+    display:flex;
+    justify-content: center;
+    box-shadow: 0px 2px 28px rgba(75, 88, 208, 0.15);
+    border-radius: 12px;
+    border-style: none;
+    text-align: center;
+    color: #1A1C2D;
+    cursor: pointer;
+    font-weight: 700;
+    margin-bottom: 15px; 
+}
+.updateNotice:hover {
+    background: #d4dce4;
+}
+.postContainer {
+    width: 88%;
+    margin:0 auto;
+}
+.content_wrap {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.postInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+.post_content {
+    font-size: 0.75rem;
+    line-height: 133%;
+    margin-top: 15px;
+    white-space : pre-line;  /*줄바꿈 적용*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1rem;
+    max-height: 2rem; /* line-height 가 1rem 이고 2라인을 자르기 때문에 height는 2rem */
+}
+.fixedAlign {
+    width: 100%;
+    max-width: 375px;
+    height: 60px;
+    display: flex;
+    position: fixed;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 100px;
+    /* right: 10px; */
+    /* transform: translatex(80%); */
+    bottom: 100px;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+.refreshFloat {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    border-radius: 60px;
+    background:#25D482;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-right: 28px;
+    pointer-events: all;
+    box-shadow: 2px 2px 3px #999;
+
+}
+
+.refreshFloat:hover {
+    background-color: #167a4c;
+}
+.refreshFloat i:hover {
+    -webkit-animation: rotate-center 0.4s ease-in-out both;
+    animation: rotate-center 0.4s ease-in-out both;
+}
+@-webkit-keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+/*-------------------menuIcon----------------------*/ 
+.menu-trigger,
+.menu-trigger span {
+    display: inline-block;
+    transition: all 0.4s;
+    box-sizing: border-box;
+}
+
+.menu-trigger {
+    position: relative;
+    width: 27px;
+    cursor: pointer;
+    margin-right:6%;
+    height: 22px;
+}
+
+.menu-trigger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #CCD2E3;
+    border-radius: 4px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+    top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+    top: 10px;
+}
+
+.menu-trigger span:nth-of-type(3) {
+    bottom: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(1) {
+    transform: translateY(10px) rotate(-45deg);
+}
+
+.menu-trigger.active-1 span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(3) {
+    transform: translateY(-10px) rotate(45deg);
+}
+.menu-trigger:hover span{
+    background-color:#12121D;
+}
+/*---------------------------*/
+
+@keyframes opc {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+
+#menu {
+    display: none;
+}
+#menuNav {
+    animation: opc 0.4s;
+    display: none;
+    flex-direction: column;
+    margin-left: auto;
+    width: 180px;
+    height: auto;
+    text-align: center;
+    background-color: white;
+    position:absolute;
+    right:0;
+    border: 1px solid #eee;
+
+}
+#menu:checked + #menuNav {
+    display:flex;
+}
+.menuWrapper a {
+    color:#CCD2E3;
+}
+nav li {
+    list-style: none;
+    cursor: pointer;
+    padding: 4px 0px 4px 0px;
+}
+nav li:hover {
+    background-color: #eee;
+}

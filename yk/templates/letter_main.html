@@ -1,0 +1,79 @@
+{% extends 'base.html' %}{% load static %}{% load pwa %} 
+
+{% block css %}
+{% load webpush_notifications %}
+{% progressive_web_app_meta %}
+{% webpush_header %}
+<style>
+  #webpush-message {
+    visibility: hidden;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="{% static 'letter_main.css' %}">
+{% endblock %}
+{% block content %}
+
+  <div class="TitleContainer">
+    <div class="letterTitle">쪽지<i class="fas fa-envelope"></i></div>
+    <div>{% webpush_button %}</div>
+  </div>
+  <!-- <a href="{% url 'yk:my_page' %}">마이페이지로</a> -->
+  <div class="letterInfo">
+      <strong>쪽지하기</strong> 통화가 즐거우셨나요? 친구신청을 통해 친구가 되었어요!<br>
+      쪽지를 통해 서로 소통해보세요 :)
+  </div>
+  <div class="fixedAlign">
+    <a style="cursor: pointer;" onClick="window.location.reload()">
+      <div class="refreshFloat">
+        <!-- <i class="fas fa-retweet"></i> -->
+        <i class="fas fa-redo-alt"></i>
+      </div>
+    </a>
+  </div>
+
+  {% comment %} 친구 없을 경우 ㅠㅠ {% endcomment %}
+  {% if friend_count == 0 %}
+  <div class="letterInfo2">
+    <p>친구가 없어요 :(<br>7분 통화 후 친구에게 친구신청을 해보세요!</p>
+  </div>
+  {% else %}
+  {% for friend in result.keys %}
+  {% load core_extras %}
+  {% if not result|get_item:friend == None %}
+  <!-- 서로 보낸 쪽지가 있을 경우 -->
+    
+    <div class="friend_item"> 
+      <a href="{% url 'yk:letter_detail' friend.pk %}">
+      <div class="profileImgWrapper">
+        <img src="{{friend.profile.all.first.profile_image.url}}" alt="profile"  />
+      </div> </a>    
+      <a href="{% url 'yk:letter_detail' friend.pk %}">
+      <div style="display: flex; flex-direction: column; margin-left:12px;">
+        <span class="friendName">{{ friend.profile.all.first.nickname }}</span>
+        <span class="lastLetter">{{ result|get_item:friend }}</span>
+      </div></a>
+      {% if result2|get_item:friend != 0 %}
+      <div id="newNotice"></div>
+      
+    {% endif %}
+    </div>
+
+  {% else %}
+  <!-- 서로 보낸 쪽지가 없을 경우 -->
+    <a href="{% url 'yk:letter_detail' friend.pk %}">
+    <div class="friend_item"> 
+      <div class="profileImgWrapper">
+        <img src="{{friend.profile.all.first.profile_image.url}}" alt="profile"  />
+      </div>
+      <div style="display: flex; flex-direction: column; margin-left:12px">
+        <span class="friendName">{{ friend.profile.all.first.nickname }}</span>
+        <span class="newLetter">친구에게 쪽지를 보내보세요</span>
+      </div>
+    </div>
+    </a>
+  {% endif %}
+  {% endfor %}
+    {% endif %}
+
+
+{% endblock %}

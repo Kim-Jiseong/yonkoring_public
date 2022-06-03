@@ -1,0 +1,189 @@
+.profImgContainer {
+    position: relative;
+    width: 100%;
+    padding-bottom:100%;
+    overflow: hidden;
+    animation:scale-up-center .7s cubic-bezier(.39,.575,.565,1.000) both}
+.profImgContainer img {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    right: -9999px;
+    bottom: -9999px;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
+.nickname  {
+    position: absolute;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: #FFFFFF;
+    top: 60%;
+    left:6.4%;
+}
+
+.filterBox  {
+    position: absolute;
+    width: 100%;
+    padding-bottom:100%;
+    background: linear-gradient(180deg, rgba(8, 8, 8, 0) 0%, rgba(8, 8, 8, 0.1) 23.94%, rgba(8, 8, 8, 0.24) 34.55%, #191B1A 100%);
+}
+.selfInfoJob {
+    position: absolute;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 1.125;
+    top: 71%;
+    left: 6%;
+    color: #FFFFFF;
+    
+    opacity: 0.6;
+}
+.remainTime {
+    position:absolute;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    top: 80%;
+    left: 6%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(24px);
+    width:14%;
+    height:8%;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+.profImgContainer {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.closeCallBtn {
+    position:absolute;
+    cursor: pointer;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:5000px;
+    width:20%;
+    height:20%;
+    top: 66%;
+    left: 73%;
+    background:  #FC015B;
+}
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    animation:slide-top .7s cubic-bezier(.25,.46,.45,.94) both;
+    margin-left: 6.4%;
+}
+.introTitle {        
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 20px;
+    color: #25D482;
+}
+
+.bio {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 1.188rem;
+    letter-spacing: -0.005em;
+    color: #505050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.875rem;
+}
+.info {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 143%;
+    color: #505050;
+    margin-bottom: 6px;
+}
+.another_friend{
+    position: absolute;
+    width: 45%;
+    height: 10%;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    background: rgba(216, 219, 221, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border-style: none;
+    left: 24%;
+    top: 80%;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 125%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #EAECEE;
+}
+
+#friend {
+    position: absolute;
+    font-family: 'Spoqa Han Sans Neo';
+    background: #25D482;
+    border-radius: 8px;
+    border-style: none;
+    top: 80%;
+    left:71.2%;
+    height: 10%;
+    width:24%;
+    color: #EAECEE;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 125%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.game_wrap {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    top: 44%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.gameBtn {
+    background: rgba(255, 255, 255, 0.2);
+    border-style: none;
+    color:white;
+    cursor: pointer;
+    width: 56px;
+    margin-right:34px;
+    height:56px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+}
+.gameBtn:hover {
+    background: rgba(255, 255, 255, 0.5);
+
+}
+
+@keyframes slide-top{0%{transform:translateY(500px)}100%{transform:translateY(0px)}}
+@keyframes scale-up-center{0%{transform:scale(.7)}100%{transform:scale(1)}}

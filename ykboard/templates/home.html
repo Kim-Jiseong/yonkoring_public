@@ -1,0 +1,73 @@
+{% extends 'base.html' %}{% load static %}{% load pwa %} 
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+{% endblock %}
+{% block content %}
+{% progressive_web_app_meta %}
+<div class="top-navbar">
+    <p style="margin-left:8%;font-weight: 700; font-size: 1.625rem; line-height: 123%; display: flex; align-items: center; letter-spacing: -0.005em; color: #12121D;">연고링 커뮤니티</p>
+    <label for="menu" class="menu-trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>  
+</div>
+<input type="checkbox" id="menu">
+<nav id="menuNav">
+  <a href="{% url 'ykboard:my_post' %}"><li>내가 쓴 글</li></a>
+  <a href="{% url 'ykboard:my_comment' %}"><li>댓글 단 글</li></a>
+</nav>
+<a href="{% url 'ykboard:yk_update' %}">
+<div class="updateNotice"><div style="width:24px; align-items: center;justify-content:center; display:flex; color:white; font-size: 0.8rem; margin-right: 8px; height:24px; border-radius: 24px; background-color: #25D482;"><i class="fas fa-bell"></i></div>연고링 업데이트 공지</div>
+</a>
+<div class="postContainer">
+{% for post in posts %}
+<div class="content_wrap" onclick="location.href=`{% url 'ykboard:detail' post.pk %}`">
+    <div class="post_content">{{post.content}}</div>
+    <div class="postInfo">
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <div class="time" style="color:#ACB3BF; display: none; font-size:0.7rem;">{{post.create_at}}</div>
+            {% if post.author == user %}
+            <span style="color:#ACB3BF; margin-left:6px; font-size:0.7rem;">익명(나)</span>
+            {% else %}
+            <span style="color:#ACB3BF; margin-left:6px; font-size:0.7rem;">익명</span>
+            {% endif %}
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <div class="like" style="font-size:0.75rem; color: #25D482; margin-right: 10px;"><i class="far fa-heart" style="color: #25D482; margin-right: 3px;"></i>{{post.likes.all|length}}</div>
+            <div class="comment" style="font-size:0.75rem; color: #25D482"><i class="fas fa-comment" style="color: #25D482; margin-right: 3px;"></i> {{post.comments.all|length}}</div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+<div class="fixedAlign">
+    <a style="cursor: pointer;" href="{% url 'ykboard:new' %}">
+      <div class="refreshFloat">
+        <i class="fas fa-plus"></i>
+      </div>
+    </a>
+  </div>
+
+
+<script src="{% static 'timeAgo.js' %}"></script>
+<script>
+    function turnTime(){
+        const timeDoms = document.querySelectorAll(".time")
+        let timeDom;
+        for(let i=0; i < timeDoms.length; i++){
+            timeDom = timeDoms.item(i);
+            TimeAgo(timeDom.innerText, timeDom)
+        }   
+    }
+    turnTime();
+</script>
+<script>
+    const menuTrigger = document.querySelector('.menu-trigger');
+    menuTrigger.addEventListener('click', (event) => {
+    event.currentTarget.classList.toggle('active-1');
+    });
+</script>
+{% endblock %}

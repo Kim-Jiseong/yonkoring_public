@@ -1,0 +1,37 @@
+/* footer 수정 */
+.callIcon {
+    opacity: 0.3;
+}
+
+.communityIcon {
+    opacity: 1;
+}
+/* ----- */
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 88%;
+    height: 60px;
+    padding: 0 6% 0 6%;
+}
+.header{
+    font-size: 1rem;
+}
+.textContainer{ 
+    width: 88%;
+    margin: 0 auto;
+    font-size: 0.875rem;
+    color: #636973;
+}
+.small {
+    width: 100%;
+    max-width: 330px;
+    margin: 10px 0 10px 0;
+}
+.big {
+    width: 100%;
+    max-width: 330px;
+    margin: 10px 0 10px 0;
+}

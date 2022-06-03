@@ -1,0 +1,193 @@
+a {
+    text-decoration: none;
+    color:#262626;
+}
+/* footer 수정 */
+.callIcon {
+    opacity: 0.3;
+}
+.messageIcon {
+    opacity: 1;
+}
+/* ----- */
+.container{
+    position: relative;
+}
+.TitleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size:1.5rem;
+    justify-content: space-between;
+    margin-left: 1.875rem;
+    margin-top:24px;
+    margin-bottom: 16px;
+    margin-right: 1.5rem;
+}
+.TitleContainer > a > i {
+    color: #929DA9;
+    margin-right: 0.32rem;
+}
+.TitleContainer > div > i {
+    color: #929DA9;
+    margin-left: 0.32rem;
+}
+.TitleContainer > a > i:hover {
+    color: #12121D;
+    margin-left: 0.32rem;
+}
+.letterTitle {
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 114%;
+
+    display: flex;
+    align-items: center;
+
+}
+.letterInfo {
+    margin: 0 auto;
+    background-color:#D5FCEA;
+    width: 90%;
+    color: #25D482;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size:0.75rem;
+    padding:2%;
+    border-radius:8px;
+}
+.fixedAlign {
+    width: 100%;
+    max-width: 375px;
+    height: 60px;
+    display: flex;
+    position: fixed;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 100px;
+    /* right: 10px; */
+    /* transform: translatex(80%); */
+    bottom: 100px;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+.refreshFloat {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    border-radius: 60px;
+    background:#25D482;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-right: 28px;
+    pointer-events: all;
+    box-shadow: 2px 2px 3px #999;
+
+}
+
+.refreshFloat:hover {
+    background-color: #167a4c;
+}
+.refreshFloat i:hover {
+    -webkit-animation: rotate-center 0.4s ease-in-out both;
+    animation: rotate-center 0.4s ease-in-out both;
+}
+.letterInfo2 {
+    color: #929DA9;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 1.125rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 50%;
+}
+.friend_item {
+    width: 90%;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    z-index: 0;
+    justify-content:flex-start;
+    align-items: center;
+    margin-left: 1rem;
+    
+}
+.profileImgWrapper {
+    width: 3.5rem;
+    height: 3.5rem; 
+    border-radius: 300px;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+.profileImgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+.friendName {
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 0.875rem;
+    line-height: 150%;
+    color: #262626;
+    font-weight: 700;
+}
+.lastLetter {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 150%;
+    color: #929DA9;
+    overflow: hidden;
+    width: 180px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.newLetter {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 150%;
+    color: #929DA9;
+
+}
+#newNotice {
+    width: 10px;
+    height: 10px;
+    border-radius: 7px;
+    background-color: #25D482;
+    margin-left:10%;
+}
+#webpush-subscribe-button {
+    border-style:none;
+    background: #929DA9;
+    border-radius: 8px;
+    width: 120px;
+    height: 27px;
+    color:white;
+    cursor:pointer;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 0.875rem;
+
+}
+@-webkit-keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate-center {
+    0% {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+    }
+  }

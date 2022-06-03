@@ -1,0 +1,339 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+<div class="black_bg"></div>
+<link rel="stylesheet" type="text/css" href="{% static 'detail.css' %}">
+<style>
+    .modal_wrap{
+        display: none;
+       width: 100%;
+        height: 220px;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        top: 40vh;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background:#ffffff;
+        z-index: 2;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 24px;
+    }
+    .modal_wrap > p {
+        font-weight: normal;
+        font-size: 1.125rem;
+        line-height: 150%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.005em;
+        color: #12121D;
+    }
+    
+    .black_bg{
+        display: none;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 300vh;
+        background-color:rgba(0, 0,0, 0.5);
+        top:0;
+        left: 0;
+        z-index: 1;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="top-navbar">
+    <div id="back">
+        <a href="{% url 'ykboard:home' %}"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    {% if post.author == user %}
+        <label for="menu" class="menu-trigger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label> 
+
+        <div class="modal_wrap" style="display: none;">
+            <p class="modal_text" style="display:inline-block; text-align:center;">삭제하시겠습니까?</p>
+            <div style="display:flex; flex-direction:row; width: 60%; justify-content:space-between; margin-top: 30px;">
+                <div class="cancel modalSelect">취소</div>
+                <button class="modalSelect" onclick="location.href=`{% url 'ykboard:delete' post.pk %}`">확인</button>
+            </div>
+            
+        </div>
+    {% else %}
+        <div><a href="http://pf.kakao.com/_GxnsBs/chat" style="color: #A7B0C0; font-size: 0.875rem;">신고하기</a></div>
+    {% endif %}
+</div>
+<input type="checkbox" id="menu">
+<nav id="menuNav">
+    <a href="{% url 'ykboard:edit' post.pk %}"><li>수정하기</li></a>
+    <a id="modal_btn"><li>삭제하기</li></a>
+</nav>
+<div class="postContainer">
+
+    <div class="post_wrap">
+        {% if post.author == user %}
+        <div class="contentInfoWrapper">
+            <div style="margin-right: 7px; display:flex;width:30px; height:30px; color:#fff; background-color:#25D482; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+            <div>
+                <div style="color:#25D482; font-size: 0.875rem; font-weight: 700;">익명(나)</div>
+                <div class="time" style="display: none;">{{post.create_at}}</div>
+            </div>
+        </div>
+        {% else %}
+        <div class="contentInfoWrapper">
+            <div style="margin-right: 7px; display:flex;width:30px; height:30px; color:#fff; background-color:#A7B0C0; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+            <div>
+                <div style="color:#ACB3BF; font-size: 0.875rem; font-weight: 700;">익명</div>
+                <div class="time" style="display: none; font-size: 0.7rem; color: #ACB3BF;">{{post.create_at}}</div>
+            </div>
+        </div>
+
+
+        {% endif %}
+        <div class="post_content" style="white-space : pre-line;">{{ post.content }}</div>
+        
+        <div style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content:flex-end;">
+            {% if existing_like %}
+            <div id="like-button" onclick="like()">
+                <span id="like_icon"><i class="fas fa-heart" style="font-size: 0.75rem; color: #25D482; margin-right: 3px;"></i></span><span id="like" style="font-size:0.75rem; color: #25D482; margin-right: 10px;">{{post.likes.all|length}}</span>
+            </div>
+            {% else %}
+            <div id="like-button" onclick="like()">
+                <span id="like_icon"><i class="far fa-heart" style="font-size: 0.75rem; color: #25D482; margin-right: 3px;"></i></span><span id="like" style="font-size:0.75rem; color: #25D482; margin-right: 10px;">{{post.likes.all|length}}</span>
+            </div>
+            {% endif %}
+            <div class="comment" style="font-size: 0.75rem; color: #25D482"><i class="fas fa-comment" style="color: #25D482; margin-right: 3px;"></i> {{post.comments.all|length}}</div>
+        </div>  
+    </div>
+
+    <br>
+    {% for comment in post.comments.all %}
+    <div class="commentContainer">
+        <!-- 답글이 아닐 경우 -->
+        {% if not comment.reply %}
+        <!-- 글쓴이가 댓글도 썼을 경우 -->
+        {% if post.author == comment.author %}
+            {% if comment.author == user %}
+            <div class="commentInfoWrapper" onclick="reply('글쓴이', '{{comment.pk}}')">
+                <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">    
+                    <div style="display:flex;width:30px; height:30px; color:#fff; background-color:#25D482; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                        <div class="commentContentWrapper">
+                        <div id="author" class="익명{{comment.order}}" style="color:#25D482; font-size: 0.875rem; font-weight: 700;">글쓴이 (나)</div>
+                        <div class="commentContent">{{comment.content}}</div>
+                    </div>
+                </div>
+                <div>
+                    <a class="deleteComment" href="{% url 'ykboard:comment_delete' post.pk comment.pk %}">삭제</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="commentInfoWrapper" onclick="reply('글쓴이', '{{comment.pk}}')">
+                <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                    <div style="display:flex;width:30px; height:30px; color:#fff; background-color:#25D482; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                        <div class="commentContentWrapper">
+                        <div id="author" class="익명{{comment.order}}" style="color:#25D482; font-size: 0.875rem; font-weight: 700;">글쓴이</div>
+                        <div class="commentContent">{{comment.content}}</div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% else %}
+            {% if comment.author == user %}
+            <div class="commentInfoWrapper" onclick="reply('익명{{comment.order}}', '{{comment.pk}}')">
+                <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                    <div style="display:flex; width:30px; height:30px; color:#fff; background-color:#A7B0C0; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                    <div class="commentContentWrapper">
+                        <div id="author" class="익명{{comment.order}}" style="color:#A7B0C0; font-size: 0.875rem; font-weight: 700;">익명{{comment.order}} (나)</div>
+                        <div class="commentContent">{{comment.content}}</div>
+                    </div>
+                </div>
+                <div>
+                    <a class="deleteComment" href="{% url 'ykboard:comment_delete' post.pk comment.pk %}">삭제</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="commentInfoWrapper" onclick="reply('익명{{comment.order}}', '{{comment.pk}}')">
+                <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                    <div style="display:flex;width:30px; height:30px; color:#fff; background-color:#A7B0C0; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                    <div class="commentContentWrapper">
+                        <div id="author" class="익명{{comment.order}}" style="color:#A7B0C0; font-size: 0.875rem; font-weight: 700;">익명{{comment.order}}</div>
+                        <div class="commentContent">{{comment.content}}</div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+        <div class="time" style="margin-left: 37px; display: none;">{{comment.create_at}}</div>
+           
+
+        {% for reply_comment in comment.comments.all %}
+        <!-- 답글이 있을 경우 -->
+        <div class="replyWrapper">
+            <div style="color:#ACB3BF;margin-right: 10px;">ㄴ</div>
+            <div style="width:100%;">
+                <!-- 글쓴이가 댓글도 썼을 경우 -->
+            {% if post.author == reply_comment.author %}
+                {% if reply_comment.author == user %}
+                <div class="commentInfoWrapper" onclick="reply('글쓴이', '{{comment.pk}}')">
+                    <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                        <div style="display:flex;width:30px; height:30px; color:#fff; background-color:#25D482; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                        <div class="commentContentWrapper">
+                            <div id="author" class="익명{{reply_comment.order}}" style="color:#25D482; font-size: 0.875rem; font-weight: 700;">글쓴이 (나)</div>
+                            <div class="commentContent">{{reply_comment.content}}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="deleteComment" href="{% url 'ykboard:comment_delete' post.pk reply_comment.pk %}">삭제</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="commentInfoWrapper" onclick="reply('글쓴이', '{{comment.pk}}')">
+                    <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                        <div style="display:flex;width:30px; height:30px; color:#fff; background-color:#25D482; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                        <div class="commentContentWrapper ">
+                            <div id="author" class="익명{{reply_comment.order}}" style="color:#25D482; font-size: 0.875rem; font-weight: 700;">글쓴이</div>
+                            <div class="commentContent">{{reply_comment.content}}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% else %}
+                {% if reply_comment.author == user %}
+                <div class="commentInfoWrapper" onclick="reply('익명{{reply_comment.order}}', '{{comment.pk}}')">
+                    <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                        <div style="display:flex; width:30px; height:30px; color:#fff; background-color:#A7B0C0; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                        <div class="commentContentWrapper">
+                            <div id="author" class="익명{{reply_comment.order}}" style="color:#A7B0C0; font-size: 0.875rem; font-weight: 700;">익명{{reply_comment.order}} (나)</div>
+                            <div class="commentContent">{{reply_comment.content}}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="deleteComment" href="{% url 'ykboard:comment_delete' post.pk reply_comment.pk %}">삭제</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="commentInfoWrapper" onclick="reply('익명{{reply_comment.order}}', '{{comment.pk}}')">
+                    <div style="cursor:pointer; display: flex; flex-direction: row; width: 84%;">
+                        <div style="display:flex;width:30px; height:30px; color:#fff; background-color:#A7B0C0; border-radius:30px;align-items:center; justify-content:center;"><i class="fas fa-user"></i></div>
+                        <div class="commentContentWrapper">
+                            <div id="author" class="익명{{reply_comment.order}}" style="color:#A7B0C0; font-size: 0.875rem; font-weight: 700;">익명{{reply_comment.order}}</div>
+                            <div class="commentContent">{{reply_comment.content}}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+                <div class="time" style="margin-left: 37px; display: none;">{{reply_comment.create_at}}</div>
+        
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% endfor %}
+</div>
+<form method="POST">
+<div class="commentWriteContainer">
+        {% csrf_token %}
+        <div class="commentWriteWrapper">
+            <textarea required onkeydown="resize(this);" onkeyup="resize(this);" class="commentWriteContent" name="comment" placeholder="댓글을 입력하세요"></textarea>
+            <input class="reply_pk" type="text" name="reply_pk" style="display: none;">
+            <button onclick="dontDoubleClick(this); location.href=`{% url 'ykboard:detail' post.pk %}`"><i class="fas fa-arrow-up"></i></button>
+        </div>
+    </div>
+</form>
+<script src="{% static 'timeAgo.js' %}"></script>
+<script>
+    function checkDelete() {
+        const authors = document.querySelectorAll('.익명-2')
+        for(let i=0; i<authors.length; i++){
+            author = authors.item(i)
+            author.innerText = '(삭제)'
+            author.style.color = '#A7B0C0'
+            author.parentNode.previousElementSibling.style.backgroundColor = '#A7B0C0'
+            author.parentNode.parentNode.parentNode.removeAttribute('onclick');
+
+        }
+    }
+
+    window.onload = function () {
+        checkDelete();
+        turnTime();
+    }
+    
+    function dontDoubleClick(target) {
+    setTimeout(() => target.disabled= true, 10);
+    setTimeout(() => target.disabled= false, 1000);
+    }
+    
+    const like = () => {
+        fetch('/like/', {
+            method: "POST",
+            body: JSON.stringify({post_pk: "{{ post.pk }}"})
+        })
+        .then(response => response.json())
+        .then(res=>{
+            if(res.already_like){ document.getElementById("like_icon").innerHTML = '<i class="far fa-heart" style="font-size: 0.75rem; color: #25D482; margin-right: 3px;"></i>'}
+            else{ document.getElementById("like_icon").innerHTML = '<i class="fas fa-heart" style="font-size: 0.75rem; color: #25D482; margin-right: 3px;"></i>'}
+            document.getElementById("like").innerHTML = res.like_count;
+        } )
+        .catch(error => console.error(err))
+    }
+
+    function turnTime(){
+        const timeDoms = document.querySelectorAll(".time")
+        let timeDom;
+        for(let i=0; i < timeDoms.length; i++){
+            timeDom = timeDoms.item(i);
+            TimeAgo(timeDom.innerText, timeDom)
+        }
+        
+    }
+
+    
+
+    
+</script>
+
+<script>
+    const modal = document.querySelector(".modal_wrap")
+    const bg = document.querySelector(".black_bg")
+    const btnModal = document.getElementById("modal_btn")
+    btnModal.addEventListener("click", e => {
+        modal.style.display = "flex"
+        bg.style.display = "flex"
+    })
+    const cancel = document.querySelector(".cancel")
+    cancel.addEventListener("click", e => {
+    
+      modal.style.display = "none"
+    
+    bg.style.display = "none"
+    })
+    const menuTrigger = document.querySelector('.menu-trigger');
+    menuTrigger.addEventListener('click', (event) => {
+      event.currentTarget.classList.toggle('active-1');
+    });
+
+    function resize(obj) {
+            obj.style.height = "1px";
+            obj.style.height = (12 + obj.scrollHeight) + "px";
+        }
+
+    function reply(name, pk) {
+        document.querySelector('textarea').innerHTML = `@${name} `
+        document.querySelector('.reply_pk').setAttribute("value", pk)
+    }
+
+
+    
+</script>
+{% endblock %}

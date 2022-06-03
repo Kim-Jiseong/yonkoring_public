@@ -1,0 +1,57 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'yk_update.css' %}">
+{% endblock %}
+{% block content %}
+<div class="top-navbar">
+    <div id="back">
+        <a href="{% url 'ykboard:home' %}"><i class="fas fa-arrow-left"></i></a>
+    </div>
+    <div class="header">연고링 업데이트 안내 (21.09.16)</div>
+    <div></div>
+</div>
+<div class="textContainer"> 
+<b style="color:#25D482; font-size: 1rem">A. 푸쉬 알림 기능이 추가되었습니다!</b><br>(안드로이드 유저 한정, IOS는 추후 지원 예정입니다.)<br><br>
+그동안 쪽지가 와도 알림이 오지 않아 불편하셨죠? <br>
+이제부터 모든 안드로이드, 윈도우 이용자라면 간단한 설정만으로 알림을 받을 수 있게 되었습니다.<br><br>
+1. 쪽지함에서 상단의 "쪽지 푸쉬알림"을 눌러 알림을 허용해주세요.<br>
+<img class="small" src="{% static 'a-1.png' %}" alt="알림허용">
+<img class="small" src="{% static 'a-2.png' %}" alt="알림설정">
+2. 친구와의 대화창에서 알림이 설정됐는지 확인!<br>
+<img class="small" src="{% static 'a-3.png' %}" alt="알림확인">
+3. 이제 편리하게 쪽지를 확인하세요!<br><br>
+<img class="small" src="{% static 'a-4.png' %}" alt="알림확인">
+<br>
+<b style="color:#25D482; font-size: 1rem">B. 연고링을 앱으로 사용할 수 있게 되었습니다!</b><br><br>
+이제 더 이상 번거롭게 연고링을 검색하지 않아도 됩니다! 빠르고 편안한 연고링 PWA 앱을 즐겨주세요.<br><br>
+<b>* 연고링 앱 설치 방법 첫번째! (안드로이드)</b><br>
+1. 크롬으로 연고링 사이트에 접속해 주세요.<br>
+2. 로그인 후 메인 화면에서 "홈 화면에 연고링 추가"를 선택!<br>
+<img class="big" src="{% static 'b-1.png' %}" alt="앱 설치">
+3. 연고링 앱이 설치되었습니다!<br>
+<br>
+<b>* 연고링 앱 설치 방법 두번째!</b> (안드로이드)<br>
+1. 크롬으로 연고링 사이트에 접속해 주세요.<br>
+2. 로그인 후 메인 화면에서 크롬 메뉴를 열어주세요.<br>
+3. 앱 설치를 선택하시면 앱이 설치됩니다!<br>
+<img class="big" src="{% static 'b-2.png' %}" alt="앱 설치">
+<br>
+<b>* 연고링 앱 설치방법 세번째! (아이폰)</b><br>
+1. 사파리로 연고링 사이트에 접속해주세요.<br>
+2. 로그인 후 사파리 설정에서 "홈 화면에 추가" 선택!<br>
+3. 앱이 홈 화면에 추가됩니다! (아이폰의 경우 일부 기능이 지원되지 않을 수 있습니다.)<br>
+<br><br>
+<b style="color:#25D482; font-size: 1rem">C. 연고링 보이스톡 시간이 10시-12시로 변경되었습니다!</b><br><br>
+<b style="color:#25D482; font-size: 1rem">D. 연고링 커뮤니티가 출시되었습니다!</b><br><br>
+그동안 통화 시작 전에는 심심하셨죠?<br> 이제 연고링 커뮤니티에서 통화시간 전까지 놀아보세요!<br>상단 메뉴를 누르면 내가 쓴 글과 댓글도 모아볼 수 있답니다.<br><br>
+<b style="font-size: 1rem">E. 통화 관련 연결 버그 수정</b><br><br>
+- 특정 상황에서 통화 수락 창이 제대로 출력되지 않던 문제를 해결했습니다. <br>
+- 특정 상황에서 통화 매칭이 지연되는 문제를 해결했습니다.<br>
+- 통화 수락 창에 10초의 카운트다운 UI가 추가되었습니다.<br>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}    
+<head>
+
+    <meta charset="UTF-8">
+    <!-- <link crossorigin="use-credentials" rel="manifest" href="./manifest.json" /> -->
+        <!-- <link rel="manifest" href="manifest.json" crossorigin="use-credentials"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google" value="notranslate" />
+    <!-- 자동 구글 번역 막는 코드 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연고링</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}?v=2021091601">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- pwa 관련 -->  
+        <!-- 주소창 등의 웹 브라우저 UI를 표시하지 않기 -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <!-- 상태 바의 스타일을 지정 -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- 홈 화면에서 표시되는 앱 이름을 지정 -->
+        <meta name="apple-mobile-web-app-title" content="연고링">
+        <!-- 홈 화면에서 표시되는 앱 아이콘을 지정 -->
+        <link rel="apple-touch-icon" href="{% static 'image 1425.png' %}">
+    <!-- 캐시컨트롤 -->
+    <!-- <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT"> -->
+    <!-- 위의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않습니다.
+    (따라서 위와 같은 날짜로 지정할 경우 페이지는 지속적으로 캐싱되지 않습니다.) -->
+    <!-- <meta http-equiv="Expires" content="-1"> -->
+    <!-- # 캐시된 페이지가 만료되어 삭제되는 시간을 정의합니다. 특별한 경우가 아니면 -1로 설정합니다. -->
+    <!-- <meta http-equiv="Pragma" content="no-cache"> -->
+    <!-- # 페이지 로드시마다 페이지를 캐싱하지 않습니다. (HTTP 1.0) -->
+    <!-- <meta http-equiv="Cache-Control" content="no-cache"> -->
+    <!-- # 페이지 로드시마다 페이지를 캐싱하지 않습니다. (HTTP 1.1) -->
+    <script>
+        // Detects if device is on iOS 
+        const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test( userAgent );
+        }
+        // Detects if device is in standalone mode
+        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+        // Checks if should display install popup notification:
+        if (isIos() && !isInStandaloneMode()) {
+        this.setState({ showInstallMessage: true });
+        }
+    </script>
+    <!-- 카카오 설정 -->
+    <meta property="og:image" content="{% static 'kakaoimg/yonkoring.jpeg' %}">
+    <meta property="og:title" content="연고링">
+    <meta property="og:description" content="10시에 만나는 대학친구, 연고링">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+    <style>
+        /*user-select:none 속성은 해당요소의 드레그, 더블클릭, 블럭지정을 막는다.*/
+        body div {
+            -ms-user-select: none; 
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        a {
+            text-decoration: none;
+            color:#2C2E34;
+        }
+        @media (max-width:280px){html{font-size:10px;}}
+        @media (min-width:281px) and (max-width:300px){html{font-size:11px;}}
+        @media (min-width:301px) and (max-width:320px){html{font-size:12px;}}
+        @media (min-width:321px) and (max-width:339px){html{font-size:13px;}}
+        @media (min-width:340px) and (max-width:358px){html{font-size:14px;}}
+        @media (min-width:359px) and (max-width:374px){html{font-size:15px;}}
+        @media (min-width:375px){html{font-size:16px;}}
+    </style>
+
+    {% block css %}
+
+
+    {% endblock css %}
+    
+</head>
+<body>
+    
+    <div class="Chrome">
+        <div class="container">
+        
+            {% block content %}
+            
+            {% endblock content %}
+            <!-- <div class="forFooter"></div> -->
+             <div class="footer">
+                <a href="{% url 'yk:join_done' %}" class="callIcon Icon">
+                    <i class="fas fa-phone-alt"></i><span class="iconInfo">10시</span>
+                </a>
+                <a href="{% url 'ykboard:home' %}" class="communityIcon Icon">
+                    <i class="fas fa-comments"></i><span class="iconInfo">커뮤니티</span>
+                </a>
+                <a href="{% url 'yk:letter_main' %}" class="messageIcon Icon">
+                    <i class="fas fa-envelope"></i>
+
+                    {% if user.is_authenticated %}
+                    {% check_letter user.get_username %}
+                    {% else %}
+                    <span class="iconInfo">쪽지함</span>
+                    {% endif %}
+                </a>
+                <!-- <a href="{% url 'yk:my_page' %}"> -->
+                <a href="{% url 'yk:my_page' %}" class="mypageIcon Icon">
+                    <i class="fas fa-user"></i><span class="iconInfo">프로필</span>
+                </a>
+            </div>
+        </div>
+        <div class="forFooter"></div>
+    </div>
+
+</body>
+</html>

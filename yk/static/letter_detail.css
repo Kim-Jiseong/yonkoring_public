@@ -1,0 +1,356 @@
+/* .footer {
+    display:none;
+} */
+/* footer 수정 */
+.callIcon {
+    opacity: 0.3;
+}
+.messageIcon {
+    opacity: 1;
+}
+/* ----- */
+.header {
+    display: flex; 
+    justify-content: space-between; 
+    width: 92%;
+    height: 88px;
+    align-items: center;
+    padding-left: 8%;
+    color:#12121D;
+    box-shadow: 0px -4px 26px 8px rgba(51, 63, 85, 0.08);
+}
+.header a {
+    /* all:unset; */
+    text-decoration: none;
+    cursor: pointer;
+    /* 모든 기본 디자인 초기화 */
+}
+.container {
+    position: relative;
+}
+.profileImgWrapper {
+    width: 3.5rem;
+    height: 3.5rem; 
+    border-radius: 300px;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+.profileImgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+.menuWrapper {
+    color:#CCD2E3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 30%;
+    font-size: 1.25rem;
+}
+.push_on{
+    width: 25px;
+    height: 20px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.push {
+    all:unset;
+    cursor: pointer;
+}
+.push:hover {
+    color:#12121D;
+}
+.menuWrapper a {
+    color:#CCD2E3;
+}
+.letterContainer {
+    width: 90%;
+    position: relative;
+    margin:0 auto;
+    height:100%;
+}
+.fa-paper-plane:hover {
+    color:#12121D;
+}
+
+#menu {
+    display: none;
+}
+#menuNav {
+    animation: opc 0.4s;
+    display: none;
+    flex-direction: column;
+    margin-left: auto;
+    width: 180px;
+    height: auto;
+    text-align: center;
+    background-color: white;
+    position:absolute;
+    top:0;
+    right:0;
+    border: 1px solid #eee;
+    border-radius: 0 0 16px 16px;
+}
+#menu:checked + #menuNav {
+    display:flex;
+}
+
+nav li {
+    list-style: none;
+    cursor: pointer;
+    padding: 4px 0px 4px 0px;
+}
+nav li:hover {
+    background-color: #eee;
+}
+.modal_wrap1{
+    display: none;
+    width: 92%;
+    height: 400px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background:#ffffff;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 24px;
+}
+
+.modal_wrap1 > p {
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.005em;
+    color: #A7B0C0;
+}
+
+.modal_wrap1 > a {
+    width: 50%;
+    height: 56px;
+    font-weight: 700;
+}
+
+.modal_wrap2{
+    display: none;
+    width: 92%;
+    height: 400px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background:#ffffff;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 24px;
+}
+
+.modal_wrap2 > p {
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.005em;
+    color: #A7B0C0;
+}
+
+.modal_wrap2 > a {
+    width: 50%;
+    height: 56px;
+    font-weight: 700;
+}
+
+.black_bg{
+    display: none;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100vh;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+
+.accept {
+    display: flex;
+    height: 56px;
+    background:#25D482;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 8px;
+}
+
+.cancel{
+    display: flex;
+    height: 56px;
+    background:white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+   color:#A7B0C0;
+   cursor: pointer;
+}
+
+.letterWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    border-bottom: 1px solid #eee;
+}
+
+.letterTitle {
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.letterContent {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 133%;
+    color: #636973;
+    margin-bottom: 1rem;
+}
+
+.received {
+    color: #25D482;
+}
+.sent {
+    color: #929DA9;
+}
+.time {
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 0.875rem;
+    color: #ACB3BF;
+}
+
+/*-------------------menuIcon----------------------*/ 
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all 0.4s;
+  box-sizing: border-box;
+}
+
+.menu-trigger {
+  position: relative;
+  width: 27px;
+  cursor: pointer;
+  margin-right:24%;
+  height: 22px;
+}
+
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #CCD2E3;
+  border-radius: 4px;
+
+}
+
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+  top: 10px;
+}
+
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(1) {
+  transform: translateY(10px) rotate(-45deg);
+}
+
+.menu-trigger.active-1 span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(3) {
+  transform: translateY(-10px) rotate(45deg);
+}
+.menu-trigger:hover span{
+    background-color:#12121D;
+}
+/*---------------------------*/
+
+@keyframes opc {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+/* ------------------------------ */
+.writeContainer {
+    width: 100%;
+    max-width: 375px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    bottom: 80px;
+
+}
+.writeWrapper{
+    display:flex;
+    width: 90%;
+    justify-content: space-between;
+
+}
+.letterWriteContent {
+    width: 80%;
+    resize: none;
+    border:rgba(51, 63, 85, 0.08);
+    font-family: 'Spoqa Han Sans Neo';
+    border: 1px solid #25D482;
+    background: #FFF;
+    height:auto;
+    max-height: 80px;
+    border-radius: 8px;
+    padding: 4%;
+    margin-right: 6px;
+}
+.letterWriteContent:focus {
+    outline: none;
+}
+.writeWrapper button {
+    border-style: none;
+    font-family: 'Spoqa Han Sans Neo';
+    border-radius: 8px;
+    color: white;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    background-color: #25D482;
+}
+.writeWrapper button:hover {
+    background: #167a4c;
+}
+.forFooter {
+    height: 200px;
+}

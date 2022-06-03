@@ -1,0 +1,240 @@
+/* footer 수정 */
+.callIcon {
+    opacity: 0.3;
+}
+
+.mypageIcon {
+    opacity: 1;
+}
+/* ----- */
+.titleWrapper {
+    display: flex;
+    font-family: 'Spoqa Han Sans Neo'; 
+    font-weight: 700;
+    font-size: 1.75rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 8%;
+}
+/* .titleWrapper a {
+    color: #929DA9;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75rem;
+    margin-right: 8%;
+} */
+.editProfileWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 60px;
+    box-shadow: 0rem 0.125rem 1.75rem rgba(75, 88, 208, 0.15);
+    border-radius: 12px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.editProfile {
+    
+    /* text-align: center; */
+    font-family: 'Spoqa Han Sans Neo'; 
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    color: #A7B0C0;
+}
+.fa-arrow-circle-right {
+    display: flex;
+    color: #25D482;
+    font-size:1.5rem;
+}
+.friendTitle {
+    margin-top: 10%;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 125%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #575F67;
+}
+.RequestInfo {
+    margin: 0 auto;
+    width: 92%;
+    background: #D5FCEA;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 700;
+    line-height: 142%;
+    color: #25D482;
+    padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+    font-size:0.75rem;
+    color: #25D482;
+    border-radius: 8px;
+}
+.friendRequestContainer {
+    width: 100%;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.profileImgWrapper {
+    width: 3.5rem;
+    height: 3.5rem; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.profileImgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+.menuContainer {
+    width: 100%;
+    position: relative;
+    margin:0 auto;
+}
+
+#menu {
+    display: none;
+}
+#menuNav {
+    animation: opc 0.4s;
+    display: none;
+    flex-direction: column;
+    margin-left: auto;
+    width: 180px;
+    height: auto;
+    text-align: center;
+    background-color: white;
+    position:absolute;
+    right:0;
+    border: 1px solid #eee;
+    border-radius: 0 0 16px 16px;
+}
+#menu:checked + #menuNav {
+    display:flex;
+}
+.menuWrapper a {
+    color:#CCD2E3;
+}
+nav li {
+    list-style: none;
+    cursor: pointer;
+    padding: 4px 0px 4px 0px;
+}
+nav li:hover {
+    background-color: #eee;
+}
+.requestedName {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 229%;
+    color: #262626;
+    margin-left: 0.75rem;
+}
+#friend {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    font-size: 0.75rem;
+    width:5rem;
+    height:1.875rem;
+    background: none;
+    border: 1px solid #25D482;
+    color:#25D482;
+    border-radius: 10px;
+    align-items: center;
+    margin-right: 26px;
+}
+#friend:hover {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    font-size: 0.875rem;
+    width:5rem;
+    height:1.875rem;
+    background: #25D482;
+    border: 1px solid #25D482;
+    color:white;
+    border-radius: 10px;
+    cursor: pointer;
+    align-items: center;
+}
+.noRequest { 
+    margin-top: 30%;
+    margin-bottom: 30%;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-align: center;
+    color: #929DA9;
+}
+
+/*-------------------menuIcon----------------------*/ 
+.menu-trigger,
+.menu-trigger span {
+    display: inline-block;
+    transition: all 0.4s;
+    box-sizing: border-box;
+}
+
+.menu-trigger {
+    position: relative;
+    width: 27px;
+    cursor: pointer;
+    margin-right:8%;
+    height: 22px;
+}
+
+.menu-trigger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #CCD2E3;
+    border-radius: 4px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+    top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+    top: 10px;
+}
+
+.menu-trigger span:nth-of-type(3) {
+    bottom: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(1) {
+    transform: translateY(10px) rotate(-45deg);
+}
+
+.menu-trigger.active-1 span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(3) {
+    transform: translateY(-10px) rotate(45deg);
+}
+.menu-trigger:hover span{
+    background-color:#12121D;
+}
+/*---------------------------*/
+
+@keyframes opc {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }

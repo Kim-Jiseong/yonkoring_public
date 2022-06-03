@@ -1,0 +1,66 @@
+.footer {
+    display: none;
+}
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 88%;
+    height: 60px;
+    padding: 0 6% 0 6%;
+}
+.header{
+    font-size: 1rem;
+}
+.writeContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#content {
+    width: 96%;
+    resize:none;
+    border:none;
+    background: #F8FAFD;
+    border-radius: 8px;
+    padding: 2%;
+    font-family: 'Spoqa Han Sans Neo';
+    color:#8C94A4;
+    margin-top: 15px;
+    max-height: 380px;
+}
+#content:focus {
+    outline: none;
+}
+#content::placeholder{
+    text-align: center;
+    font-family: 'Spoqa Han Sans Neo';
+}
+#info {
+    font-size: 0.75rem;
+    width: 88%;
+    margin:0 auto;
+    color:#8C94A4;
+    margin-top: 30px;
+}
+#submit {
+    width: 88%;
+    max-width: 330px;
+    height: 60px;
+    background: #C5C9CD;
+    border-style: none;
+    border-radius: 8px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: #fff;
+    background:#25D482;
+    position:absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translate(-50%);
+}
+#submit:hover {
+    background-color: #167a4c;
+}

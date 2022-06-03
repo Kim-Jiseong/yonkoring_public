@@ -1,0 +1,40 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'lobby.css' %}">
+{% endblock %}
+{% block content %}
+<div class="lobby-container">
+    <a href="{% url 'call' %}"><i class="fas fa-arrow-left"></i></a>
+    {% comment %} <div class="lobbyTitleInfo">8시에 만나는 연고대 친구</div> {% endcomment %}
+    <div class="titleWrapper">
+        <div class="lobbyTitle ">통화 연결 중</div>
+        {% comment %} <div class="load-1">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div> {% endcomment %}
+    </div>
+    <div class="circleWrapper">
+
+        <div class="box">
+            <div class="phoneCircle"><i class="fas fa-phone" style="position: absolute; display:flex; color:white; font-size:2.25rem;"></i></div>
+
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+            <span style="--i:4;"></span>
+            <span style="--i:5;"></span>
+            <span style="--i:6;"></span>
+        </div>
+    </div>
+    <div class="lobbyInfo1">연고링 이용 tip</div>
+    <div class="lobbyInfo2">
+    통화나 채팅시 상대방을 존중해주세요. 연고링은 데이팅 서비스가 
+    아닙니다! 부담스러운 요구는 No No!<br>
+    코로나로 대학친구와의 교류가 없는 상황이 안타까워서 만든 서비스로  현재 아무런 이익 목적없이 운영이 되고 있어요. 많은 피드백 
+    부탁드리겠습니다 ~ :) 소문도 많이 내주실꺼죵? ㅎㅎ
+    </div>
+</div>
+{% endblock %}

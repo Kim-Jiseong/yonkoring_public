@@ -1,0 +1,237 @@
+.container {
+  position: relative;
+}
+.titleContainer {
+  margin-left: 10%;
+  margin-top: 30%;
+  margin-bottom: 10%;
+}
+#title_info1{
+  color: #929DA9;
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Spoqa Han Sans Neo';
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #575F67;
+}
+#title_wrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+#title {
+  font-family: 'Spoqa Han Sans Neo';
+  font-size: 1.875rem;
+  font-weight: 500;
+  line-height: 133%;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.005em;
+  color: #575F67;
+}
+
+#title_info2 {
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 400;
+  font-size: 1rem;
+  color: #1A1C2D;
+  margin-bottom: 60px;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+
+}
+
+.callButton {
+  font-family: 'Spoqa Han Sans Neo'; 
+  display: flex;
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 80%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border-style: none;
+  background-color: #25D482;
+  flex-direction: row;
+  color: white;
+  box-shadow: 0.6rem 0.6rem 1.25rem rgba(174, 174, 192, 0.2);
+  margin-bottom: 10px;
+}
+
+
+.callButton:hover{
+  background-color: white;
+  color: #25D482;
+  border: 0.063rem solid #25D482;
+
+}
+.filterButton {
+  font-family: 'Spoqa Han Sans Neo'; 
+  display: flex;
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 80%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+
+  background-color: null;
+  flex-direction: row;
+  color: #929DA9;
+
+  margin-bottom: 10px;
+}
+.filterButton:hover{
+  border: 0.063rem solid #25D482;
+  /* color: white */
+}
+.tutorial {  
+  border-radius: 8px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 1rem 0.75rem 1rem 0.75rem;
+  width: 87.2%;
+  font-size:0.75rem;
+  color: #25D482;
+  font-family: 'Spoqa Han Sans Neo'; 
+  background: #D5FCEA;
+  margin-top: 10%;
+}
+.certifTutorial {
+  border-radius: 8px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 1rem 0.75rem 1rem 0.75rem;
+  width: 87.2%;
+  font-size:0.75rem;
+  color: #929DA9;
+  font-family: 'Spoqa Han Sans Neo'; 
+  background: #EAECEE;
+  margin-top: 10%;
+}
+
+.modal_wrap, .modal_wrap2{
+  display: none;
+  width: 92%;
+  height: 220px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:#ffffff;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 24px;
+}
+.info_modal {
+  display: none;
+  width: 92%;
+  height: 300px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background:#ffffff;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 24px;
+}
+.modal_wrap p, .modal_wrap2 p{
+  font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.005em;
+  color: #A7B0C0;
+}
+.info_modal p {
+  font-size: 0.70rem;
+  line-height: 150%;
+  letter-spacing: -0.005em;
+  color: #12121D;
+
+}
+.info_modal a {
+  display: flex;
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 90%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border-style: none;
+  background-color: #25D482;
+  flex-direction: row;
+  color: white;
+  box-shadow: 0.6rem 0.6rem 1.25rem rgba(174, 174, 192, 0.2);
+  margin-bottom: 10px;
+}
+.info_modal a:hover {
+  background-color: white;
+  border: 1px solid #25D482;
+  color: #25D482;
+}
+.cancel{
+  display: flex;
+
+  background:white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color:#12121D;
+  cursor: pointer;
+}
+.black_bg{
+  display: none;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100vh;
+  background-color:rgba(0, 0,0, 0.5);
+  top:0;
+  left: 0;
+  z-index: 1;
+}
+
+
+.radioWrapper {position: relative;}
+.radioWrapper input[type="radio"] { position: absolute; width: 0px; height: 0px; padding: 0; margin: 0px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
+.radioWrapper input[type="radio"] + label { display: inline-block; position: relative; padding-left: 30px; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+.radioWrapper input[type="radio"] + label:before { content: ''; position: absolute; left: 0; top: 0; width: 20px; height: 20px; text-align: center; background: #fff; border: 1px solid #cacece; border-radius: 100%; 
+  /* box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);  */
+}
+/* .radioWrapper input[type="radio"] + label:active:before, .radioWrapper input[type="radio"]:checked + label:active:before { box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1); } */
+.radioWrapper input[type="radio"]:checked + label:before { background: #E9ECEE; border-color: #25D482; }
+.radioWrapper input[type="radio"]:checked + label:after { content: ''; position: absolute; top: 1.5px; left: 1px;width: 20px; height: 20px; background: #25D482; border-radius: 100%; 
+  /* box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3); */ 
+}

@@ -1,0 +1,85 @@
+#title_info1{
+    margin-top: 50%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+#title_wrapper {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+#title {
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#title_info2 {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    font-size: 1rem;
+    color: #1A1C2D;
+    margin-bottom: 60px;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+
+}
+
+.callButton {
+    font-family: 'Spoqa Han Sans Neo'; 
+    display: flex;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+    width: 70%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border-style: none;
+    background-color: #67CE67;
+    flex-direction: row;
+    color: white;
+    box-shadow: 0.6rem 0.6rem 1.25rem rgba(174, 174, 192, 0.2);
+    margin-bottom: 10px;
+}
+.filterButton {
+    font-family: 'Spoqa Han Sans Neo'; 
+    display: flex;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+    width: 70%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 0.063rem solid #67CE67;
+    background-color: null;
+    flex-direction: row;
+    color: #67CE67;
+    box-shadow: 0.6rem 0.6rem 1.25rem rgba(174, 174, 192, 0.2);
+    margin-bottom: 10px;
+}
+
+.callButton:hover{
+    background-color: white;
+    color: #67CE67;
+    border: 0.063rem solid #67CE67;
+
+}
+.filterButton:hover{
+    background-color: #67CE67;
+    color: white
+}

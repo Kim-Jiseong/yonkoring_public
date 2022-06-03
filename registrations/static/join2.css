@@ -1,0 +1,150 @@
+.footer {
+    display: none;
+}
+.forFooter {
+    display: none;
+}
+#back {
+    display: flex;
+    font-size: 1.125rem;
+    position: relative;
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 10px 0 0 10px;
+}
+
+#back:hover {
+    background-color: #25D482;
+}
+#back:hover a {
+    color: white;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+
+}
+
+#header_title {
+    display: flex;
+    margin-bottom: 12px;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+#header_info {
+    font-size: 0.875rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.005em;
+    color: #A7B0C0;
+
+}
+
+.self_info_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 12px;
+    align-items: center;
+    text-align: center;
+}
+
+.self_info {
+    width: 84%;
+    height: 56px;
+    display: flex;
+    font-family: 'Spoqa Han Sans Neo';
+    border-radius: 8px;
+    border: solid 1px #e1e3e6;
+    background-color: #ffffff;
+    margin-bottom: 12px;
+}
+#textLengthCheck{
+    width:90%;
+    color: #A7B0C0;
+    text-align: right;
+    margin-bottom: 12px;
+}
+.self_info_info {
+    display: flex;
+    width: 84%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.875rem;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #C4CBD8;
+}
+
+.intro_urself {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.introduce {
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-radius: 5px;
+    resize: none;
+    width: 90%;
+    min-height: 100px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+    line-height: 15px;
+}
+.introduce::placeholder {
+    text-align: center;
+}
+
+#page {
+    display: block;
+    text-align: right;
+    color: #A7B0C0;
+    font-size: 0.875rem;
+    font-family: 'Spoqa Han Sans Neo';
+    margin-right: 30px;
+    margin-bottom: 45px;
+}
+
+.buttonWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#submit {
+    width: 84%;
+    height: 58px;
+    border: none;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 700;
+    font-size:1.125rem;
+    background: #25D482;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #EEEEEE;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+#submit:hover {
+    background: #167a4c;
+}
+
+#yb {
+    height: 100px;
+}

@@ -1,0 +1,62 @@
+/* footer 컨트롤 */
+.callIcon {
+    opacity: 0.3;
+}
+
+.mypageIcon {
+    opacity: 0.3;
+}
+.messageIcon {
+    opacity: 1;
+}
+/* --------------- */
+.header {
+    width: 92%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    font-family: 'Spoqa Han Sans Neo';
+    box-shadow: 0px -4px 26px 8px rgba(51, 63, 85, 0.08);
+    font-size: 0.875rem;
+    padding-left: 8%;
+}
+.header a {
+    text-decoration: none;
+    cursor:pointer;
+        /* 모든 기본 디자인 초기화 */
+}
+.letterContent {
+    width: 84%;
+    padding: 8%;
+    resize:none;
+    border: none;
+    margin-top:16px;
+    font-family: 'Spoqa Han Sans Neo';
+}
+textarea:placeholder {
+    color: #C4CBD8;
+    font-family: 'Spoqa Han Sans Neo';
+}
+textarea:focus {
+    outline: none;
+}
+.header p {
+    margin-left:6%;
+}
+form button {
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    font-size: 1.125rem;
+    width: 87%;
+    height: 60px;
+    border: none;
+    background: #25D482;
+    border-radius: 8px;
+}
+form button:hover {
+    color:#25D482;
+    background: #FFFFFF;
+    border: 1px solid #25D482;
+}

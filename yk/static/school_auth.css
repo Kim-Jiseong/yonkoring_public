@@ -1,0 +1,148 @@
+#back {
+  display: flex;
+  font-size: 1.125rem;
+  position: relative;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 0 0 10px;
+}
+
+#back:hover {
+  background-color: #25D482;
+}
+#back:hover a {
+  color: white;
+}
+.titleContainer {
+  margin-left: 10%;
+  margin-top: 50%;
+  margin-bottom: 20%;
+}
+#title_info1{
+  color: #929DA9;
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Spoqa Han Sans Neo';
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+#title_wrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+#title {
+  font-family: 'Spoqa Han Sans Neo';
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+#title_info2 {
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 400;
+  font-size: 1rem;
+  color: #1A1C2D;
+  margin-bottom: 60px;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+
+}
+
+.certifTutorial {
+  border-radius: 8px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 1rem 0.75rem 1rem 0.75rem;
+  width: 87.2%;
+  font-size:0.75rem;
+  color: #929DA9;
+  font-family: 'Spoqa Han Sans Neo'; 
+  background: #EAECEE;
+  margin-top: 10%;
+}
+.callButton {
+  font-family: 'Spoqa Han Sans Neo'; 
+  display: flex;
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 80%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border-style: none;
+  background-color: #25D482;
+  flex-direction: row;
+  color: white;
+  box-shadow: 0.6rem 0.6rem 1.25rem rgba(174, 174, 192, 0.2);
+  margin-bottom: 10px;
+}
+
+
+.callButton:hover{
+  background-color: white;
+  color: #25D482;
+  border: 0.063rem solid #25D482;
+
+}
+
+.button>label {
+  display: flex;
+  font-family: 'Spoqa Han Sans Neo';
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #25D482;
+  margin-top: 10px;
+  letter-spacing: -0.05px;
+  cursor: pointer;
+}
+.image-show {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.callButton {
+  border-style:none;
+}
+.fileContainer {
+  visibility: hidden;
+}
+#chooseFile {
+  visibility: hidden;
+}
+#chooseLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 8px;
+  width: 80px;
+  height: 40px;
+  margin: 0 auto;
+  color: #25D482;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+#chooseLabel:hover {
+  color: #fff;
+  background-color: #25D482;
+}
+label {
+  cursor:pointer;
+}

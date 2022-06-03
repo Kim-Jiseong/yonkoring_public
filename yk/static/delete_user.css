@@ -1,0 +1,52 @@
+.deleteContainer {
+    width: 84%;
+    margin: 0 auto;
+}
+
+#back {
+    display: flex;
+    font-size: 1.125rem;
+    position: relative;
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-style: none;
+    margin-top: 12px;
+}
+
+#back:hover {
+    background-color: #25D482;
+    color: white;
+}
+
+
+.deleteContainer p {
+    font-size: 0.75rem;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.005em;
+    color: #A7B0C0;
+}
+.submitSure {
+    border-style: none;
+    width: 80%;
+    height: 56px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: #A7B0C0;
+    margin-top: 100px;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 1rem;
+    color:white;
+}
+.sure {
+    background-color: #25D482;
+    /* color: white;
+    cursor: pointer; */
+}
+

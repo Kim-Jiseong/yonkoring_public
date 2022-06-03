@@ -1,0 +1,221 @@
+#back {
+    display: flex;
+    font-size: 1.125rem;
+    position: relative;
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 10px 0 10px 0;
+    border-style: none;
+}
+#back i {
+    color:#2C2E34;
+}
+
+#back:hover {
+    background-color: #25D482;
+}
+#back:hover i {
+    color: white;
+}
+
+
+.lobbyTitleInfo {
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 30%;
+    font-size: 1rem;
+    line-height: 1.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575F67;
+
+}
+
+.titleWrapper {
+    display:flex;
+    flex-direction: column;
+    margin-top: 1%;
+    align-items: center;
+
+}
+.lobbyTitle{
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: 700;
+    display: flex;
+    font-size: 2.2rem;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    color: #25D482;
+}
+
+.mute {
+    display: flex;
+    width: 80px;
+    height: 36px;
+    background: #25D482;
+    border-radius: 1000px;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.mute:hover {
+    background:#167a4c;
+}
+.circleWrapper {
+
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.box {
+    width: 270px;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+
+}
+.phoneCircle {
+    display:flex;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius:80px;
+    width:80px;
+    height:80px;
+
+    background: #25D482;
+}
+.box span {
+    position:absolute;
+    box-sizing: border-box;
+    border: 2px solid #25D482;
+    border-radius: 50%;
+    animation: circleWave 5s linear infinite;
+    animation-delay:calc(-0.8s * var(--i));
+    background-color:  #25D482;
+}
+@keyframes circleWave {
+    0% {
+        width: 80px;
+        height: 80px;
+        opacity:0.7;
+    }
+    100% {
+        width: 270px;
+        height: 270px;
+        opacity:0;
+    }
+}
+
+.lobbyInfo1 {
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.75rem;
+    line-height:142%;
+    text-transform: uppercase;
+    margin-left: 10%;
+    color: #929DA9;
+    letter-spacing: -0.05em;
+}
+.lobbyInfo2 {
+    font-family: 'Spoqa Han Sans Neo';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.75rem;
+    line-height:142%;
+    width: 80%;
+    margin:0 auto;
+    text-transform: uppercase;
+    color: #929DA9;
+    letter-spacing: -0.05em;
+}
+.ring-2 {
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+    border: 4px solid #25D482;
+    border-radius: 100%;
+    margin: 30px 0 30px 0;
+}
+#modalTimer {
+    font-family: "Spoqa Han Sans Neo";
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    color: #25D482;
+}
+
+.ball-holder {
+    position: absolute;
+    width: 8px;
+    height: 34px;
+    left: 14px;
+    top: 0px;
+}
+
+.ball {
+    position: absolute;
+    top: -11px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    background: #25D482;
+}
+/* .l-5 {
+    animation-delay: 0.96s;
+} */
+.load-5 .ball-holder {
+    animation: loadingE 10s linear infinite;
+}
+.acceptBtn {
+    border-style: none;
+    background: #25D482;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    width: 200px;
+    height: 48px;
+    color: #fff;
+}
+.acceptBtn:hover {
+    background: #167a4c;
+}
+.declineBtn {
+    border-style: none;
+    background:#fff;
+    color: #929DA9;
+    font-family: 'Spoqa Han Sans Neo';
+    font-size: 1rem;
+    font-weight: 700;
+    width: 200px;
+    height: 48px;
+}
+
+@keyframes loadingE {0%{transform: rotate(0deg)}100%{transform: rotate(360deg)}}
+.footer {
+    display:none;
+}
+

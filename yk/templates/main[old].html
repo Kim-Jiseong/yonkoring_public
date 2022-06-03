@@ -1,0 +1,83 @@
+{% extends 'base.html' %}{% load static %}
+{% load socialaccount %} {% providers_media_js %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <a target="_blank" href="https://pf.kakao.com/_GxnsBs/chat"><div class="question"> 서비스 문의하기 </div></a>
+
+    <div class="titleContainer">
+        <div id="title_info1">
+          8시에 만나는 고연대친구
+        </div>
+        <div id="title_wrapper">
+          <div id="title">연고링</div>
+          <img style="width:3rem; height:3rem; margin-bottom: 10px;" src="{% static 'image 650.png' %}" alt="">
+          <img style="width:4rem; height:4rem;" src="{% static 'image 649.png' %}" alt="">
+  
+        </div>
+      </div>
+
+        <a  href="{% provider_login_url 'google' %}">
+        <div class="google login" type="submit">
+            <div class="logo_wrapper" style="margin-right:10px;width: 20px; height: 20px; border-radius:70%;overflow: hidden;">
+                <img style="width:100%; height:100%;"src="{% static 'google-logo.png'%}">
+            </div>
+            <div class="login_text">구글 계정으로 로그인</div>
+        </div></a>
+
+        <a href="{% provider_login_url 'kakao' %}"><div class="kakao login" type="submit">
+        <div class="logo_wrapper" style="margin-right:10px;width: 20px; height: 20px; border-radius:70%; overflow: hidden; ">
+                <img style=" width:100%; height:100%;"src="{% static 'kakao-logo.jpg'%}">
+            </div>
+            <div class="login_text">카카오 계정으로 로그인</div>
+        </div></a>
+
+
+    <div class="accept_info">
+        회원가입 없이 이용가능하며 첫 로그인시<a>이용약관 및 개인정보처리방침</a>동의로 간주됩니다.
+        
+    </div>
+    <p id="use_info1">
+    <strong>사용방법</strong>
+    <br>
+    <br>
+    
+    대학생활을 하며 평생을 함께 할 친구들을 만나기도 하는데요.<br>
+    코로나로 그런 기회가 많이 없어졌죠? 연고링은 그런 대학 <br>친구들을 통화로 사귈 수 있게 해주는 프로젝트에요.
+    <br>
+    <br>
+    <strong>
+    1. 무제한 랜덤매칭으로 친구들과 오후 8시부터 새벽 2시까지 통화하기<br>
+    2. 통화가 끝났다면 친구 신청을 보내기<br>
+    3. 서로 친구가 된 사람들끼리 쪽지로 더 친해지기
+    </strong>
+    <br>
+    <br>
+    </p>
+    <p class="use_info2">
+        <strong>♥ 연고링 매력 포인트 ♥</strong><br>
+    통화를 할 수록 프로필이 선명해져요.<br>
+       ( 통화를 통해 친해진 친구들에게만 프로필을 보여줄 수 있어요 :)<br>
+    새로운 분야의 대학친구와 이야기 가능!<br>
+    취.향.저.격. 대학친구와 취향 이야기 하며 밤새기 가능!<br>
+    사소한 고민, 소소한 일상을  나누면서 친해지기 가능!
+    </p>
+    <div id="warning_wrapper">
+        <div id="warning">※주의※</div>
+        <div id="warning_info1"><strong>연고링은 데이팅이 아닌 대학친구사귀기 서비스입니다. </strong>현재는 고연대 학생들만 가능합니다. ( 다른 학교 학생 분들은 서비스 자세히 보기에서 학교를 신청해주세요 )</div>
+
+    </div>
+    <a target="_blank" href="https://sunset-beaufort-0ba.notion.site/8-42e0733d33c34d41a60e5810714e9956">
+    <div class="service_info_wrapper">
+            <div class="service_info">
+                서비스 소개 자세히 보기 </div>
+                <i class="fas fa-arrow-circle-right"></i>
+    </div></a>
+        <div id="yb"></div>
+
+
+</div>
+{% endblock %}

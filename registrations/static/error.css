@@ -1,0 +1,40 @@
+.footer {
+    display:none;
+}
+.errorContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-size: 6rem;
+    margin-bottom: 0;
+    margin-top: 70%;
+}
+h2 {
+    font-size: 1.125rem;
+    color: #929DA9;
+}
+h3 {
+    font-size: 0.875rem;
+    color: #A7B0C0;
+}
+.home {
+    margin-top: 20%;
+    display: flex;
+    width: 84%;
+    height: 58px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    background: #25D482;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+}
+.home:hover {
+    background: #167a4c;
+}

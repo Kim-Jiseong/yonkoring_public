@@ -1,0 +1,159 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}">
+<style>
+    p {
+        line-height: 1.2;
+        margin: 0 0 0 0;
+    }
+    .info1 {
+        visibility: hidden;
+    }
+
+    .info2 {
+        visibility: hidden;
+    }
+
+    .info3 {
+        visibility: hidden;
+    }
+
+
+
+    .img {
+        filter: blur(10px);
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="profImgContainer">
+    <img src="{{profile.profile_image.url}}" class="img" alt="" />
+    <div class="filterBox" style="position:absolute;"></div>
+    <div class="nickname" style="position:absolute;">{{profile.nickname}}</div>
+    <div class="selfInfoJob" style="position:absolute;">{{self_info.text}}</div>
+    <div class="remainTime" style="position:absolute;">7:00</div>
+    <a href="{% url 'lobby' %}" class="closeCallBtn"><i class="fas fa-phone" style="position:absolute; display:flex; color:white; font-size:2.25rem; transform: rotate(225deg);"></i></a>
+    <a href="{% url 'yk:profile' %}"><button style="visibility:hidden;" class="ctrlBtn another_friend">다른 친구와 통화하기</button></a>
+    {% if my_request == 0 %}
+        <button type="submit" style="visibility:hidden;" class="ctrlBtn" id="friend" onclick="friend_request(); friend_toggle()">친구요청</button>
+    {% else %}
+        <button type="submit" style="visibility:hidden;" class="ctrlBtn" id="friend" onclick="friend_request(); friend_toggle()">요청취소</button>
+    {% endif %}
+</div>
+<div class="infoContainer">
+    <p class="bio">{{profile.bio}}</p>
+
+
+
+    <br>
+    <a class="introTitle">목표/버킷리스트</a>
+    <p class="info2 info">{{profile.goal}}</p>
+    <br>
+    <a class="introTitle">Detail</a>
+    <p class="info"><strong>성별:</strong> {{profile.gender}}</p>
+    <p class="info1 info"><strong>나이:</strong> {{profile.age}}</p>
+    <p class="info1 info"><strong>학교:</strong> {{profile.school}}</p>
+    <p class="info1 info"><strong>MBTI:</strong> {{profile.mbti}}</p>
+    <p class="info3 info"><strong>위치:</strong> {{profile.address}}</p>
+    <p class="info3 info"><strong>활동이력:</strong> {{profile.club}}</p>
+
+
+
+
+    <br>
+    <a class="introTitle">관심사</a>
+    
+    <p class="interests info">#{{ profile.interest }}</p>
+    {% comment %} 근데 이거 제대로 구분 되나요 {% endcomment %}
+    
+</div>
+    <br>
+    <br>
+
+    </form>
+    <br>
+    <br>
+    <br>
+    <!-- <a href="{% url 'yk:my_page' %}">마이페이지로 돌아가기</a> -->
+    <script>
+        const friend_request = () => {
+            fetch('/friend_request', {
+                method: 'POST',
+                body: JSON.stringify({ user_pk: "{{ random_pk }}" }),
+            })
+                .then((response) => response.json())
+                .catch((e) => console.error(e))
+        };
+
+        const friend_toggle = () => {
+            const friend = document.querySelector('#friend');
+            if (friend.textContent === '친구요청') {
+                friend.textContent = '요청취소'
+            } else {
+                friend.textContent = '친구요청'
+            }
+        }
+    </script>
+    <script>
+        const now = new Date();
+        const startTime = now.getTime();
+        let remainTime = 420;
+        let remainMin = 0;
+        let remainSec = 0;
+
+        function TimeInterval(time1) {
+            const now2 = new Date();
+            const time2 = now2.getTime();
+            return Math.floor((time2 - time1) / 1000);
+        }
+
+        async function TimeUp() {
+            remainTime = 420 - await TimeInterval(startTime);
+            console.log(remainTime);
+            remainMin = Math.floor(remainTime / 60);
+            remainSec = remainTime - remainMin * 60;
+            if (remainSec.toString().length == 1) remainSec = "0" + remainSec;
+            document.querySelector('.remainTime').innerText = remainMin + ":" + remainSec;
+
+            if (remainTime === 419) {
+                let array1 = document.querySelectorAll('.info1');
+                for (let i = 0; i < array1.length; i++) {
+                    array1[i].style.visibility = 'visible';
+                }
+                document.querySelector('.img').style.filter = 'blur(5px)'
+            }
+            if (remainTime === 418) {
+                let array2 = document.querySelectorAll('.info2');
+                for (let i = 0; i < array2.length; i++) {
+                    array2[i].style.visibility = 'visible';
+                }
+                document.querySelector('.img').style.filter = 'blur(3px)'
+            }
+            if (remainTime === 415) {
+                let array3 = document.querySelectorAll('.info3');
+                for (let i = 0; i < array3.length; i++) {
+                    array3[i].style.visibility = 'visible';
+                }
+                document.querySelector('.img').style.filter = 'blur(0px)'
+            }
+            if (remainTime === 413) {
+                let array4 = document.querySelectorAll('.ctrlBtn');
+
+                for (let i = 0; i < array4.length; i++) {
+                    array4[i].style.visibility = 'visible';
+                }
+                document.querySelector('.closeCallBtn').style.display = 'none';
+                document.querySelector('.remainTime').style.display = 'none';
+                document.querySelector('.footer').style.display = 'flex';
+            }
+        }
+
+        function init() {
+            setInterval(TimeUp, 1000);
+        }
+        init();
+
+    </script>
+{% endblock %}

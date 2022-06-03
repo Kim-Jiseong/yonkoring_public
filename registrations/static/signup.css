@@ -1,0 +1,97 @@
+.footer {
+    display:none;
+}
+.forFooter {
+    display:none;
+}
+.top-navbar {
+    padding: 24px 0  24px 0px;;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.submitBtn {
+    margin-top: 94px;
+    background: #25D482;
+    border: none;
+    width: 80%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0px 2px 28px rgba(75, 88, 208, 0.15);
+}
+.submitBtn:hover {
+    background: #167a4c;
+}
+form {
+    width: 84%;
+    padding: 0 8% 0 8%;
+}
+.signUpInfo {
+    font-size: 0.875rem;
+    line-height:143%;
+    color: #A7B0C0;
+    width: 90%;
+}
+.inputWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    color: #12121D;
+}
+.loginInput {
+    background: none;
+    display: flex;
+    border: none;
+    width: 80%;
+    height: 56px;
+    margin-left: 16px;
+    font-size: 1rem;
+}
+.telInput {
+    background: none;
+    display: flex;
+    border: none;
+    width: 100%;
+    height: 56px;
+
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.info {
+    font-size: 0.625rem;
+    line-height: 0.875rem;
+    color: #A7B0C0;
+}
+.agreeContainer{
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+
+}
+.expand {
+    background: none;
+    border-style: none;
+    cursor: pointer;
+}
+#agreeInfo {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #A7B0C0;
+}
+#es {
+    color:#25D482;
+}
+.hidden {
+    visibility:hidden;
+}
+.show {
+    visibility:visible;
+}

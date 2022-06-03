@@ -1,0 +1,139 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'school_auth.css' %}">
+
+{% endblock %}
+{% block content %}
+<style type="text/css">
+        .footer {
+            display: none;
+        }
+        .forFooter {
+            display:none;
+        }
+
+        .profile_img_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 200px;
+        }
+
+        .profile_img_container>label {
+            background-color: transparent;
+            border: none;
+        }
+
+        .profile_img_wrapper {
+            display: flex;
+            width: 125px;
+            height: 125px;
+            overflow: hidden;
+            justify-content: space-around;
+        }
+
+
+</style>
+<div id="back">
+    <a href="{% url 'yk:join_done' %}"><i class="fas fa-arrow-left"></i></a>
+</div>
+    <div class="titleContainer">
+      <div id="title_info1">
+        8시에 만나는 고연대친구
+      </div>
+      <div id="title_wrapper">
+        <div id="title">연고링</div>
+        <img style="width:3rem; height:3rem; margin-bottom: 10px;" src="{% static 'image 650.png' %}" alt="">
+        <img style="width:4rem; height:4rem;" src="{% static 'image 649.png' %}" alt="">
+
+      </div>
+    </div>
+ 
+    <div class="image-upload" id="image-upload">
+        <form action="{% url 'yk:school_auth'%}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+                <label for="chooseFile">
+                    <div id="chooseLabel">
+                        사진 선택
+                    </div>
+                </label>
+            
+        <input required type="file" id="chooseFile" name="image" accept="image/*"
+                onchange="loadFile(this); showImage(this)">
+        <div class="fileContainer">
+            <div class="fileInput">
+                <p id="fileName">파일 이름: </p>
+                <p id="fileName"></p>
+            </div>
+        </div>
+        <div class="image-show" id="image-show"></div>
+        <p style="text-align:center; border-radius:8px; font-size: 0.75rem; color:#929DA9; font-family: 'Spoqa Han Sans Neo';">
+            <i class="fas fa-exclamation-triangle"></i>부적절한 인증 사진을 업로드하시면 계정이 정지돼요.</p>
+        <button class="callButton" type="submit">
+            <div class="login_text">연고링 시작하기</div>
+        </button>
+    </form>
+    <div class="certifTutorial"> 
+      <p><strong>인증방법</strong><br>
+        학교 인증 사진 업로드를 하시면 바로 서비스 사용이 가능해요.<br>
+        <strong>합격 증명 사진/ 포털 사이트 & 학생증 사진 / 졸업 증명 사진 </strong>중 1개를 선택해서 업로드해 주세요.<br>
+        <strong>꼭! 학번이 나오게 찍어주세요.</strong>(이 외의 다른 정보는 가리셔도 괜찮아요. 학교 확인 용도로만 사용되며 확인 이후 즉시 폐기 됩니다.)<br>
+        <!-- <b style="color: #000;">부적절한 사진을 올릴 경우 영구정지 될 수 있습니다.</b> -->
+    </p>
+    </div>
+</div>
+
+<script>
+  function showImage(input) {
+        if (input.files && input.files[0].size > (5 * 1024 * 1024)) {
+            alert("이미지 용량 5mb 이하로 부탁드려요 :)");
+            input.value = null;
+            } else {
+            var newImage = document.getElementById('image-show').lastElementChild;
+            newImage.style.visibility = "visible";
+
+            document.getElementById('profile_img_wrapper').style.visibility = 'hidden';
+            document.getElementById('image-show').style.zIndex = 100;
+
+            //document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
+        }
+  }
+
+
+        function loadFile(input) {
+            if (input.files && input.files[0].size < (5 * 1024 * 1024)) {
+            var file = input.files[0];
+
+            var name = document.getElementById('fileName');
+            name.textContent = file.name;
+
+            if (document.querySelector(".img")) {
+                var arr = document.querySelectorAll(".img");
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i].style.display = 'none';
+                }
+            }
+
+            var newImage = document.createElement("img");
+            newImage.setAttribute("class", 'img');
+
+            newImage.src = URL.createObjectURL(file);
+
+            newImage.style.width = "54%";
+            newImage.style.height = "130px";
+            newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
+            newImage.style.objectFit = "cover";
+            newImage.style.border = "4px solid #eee";
+            newImage.style.borderRadius = "10px";
+
+            var container = document.getElementById('image-show');
+            container.appendChild(newImage);
+        }
+        };
+</script>
+{% endblock %}

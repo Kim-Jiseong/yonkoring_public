@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>친구목록</h1>
+  {% for friend in final_list %}
+  <div><p>친구이름: {{ friend.profile.all.first.nickname }}</p></div>
+  {% endfor %}
+  <a href="{% url 'yk:profile' %}">친구 찾으러 가기</a>
+  <br>
+  <br>
+  <br>
+  <a href="{% url 'yk:my_profile' %}">나의 프로필</a>
+
+</body>
+</html>

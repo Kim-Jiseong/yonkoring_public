@@ -1,0 +1,58 @@
+body {
+    /* background-color:grey; */
+}
+/* footer 수정 */
+.callIcon {
+    opacity: 0.3;
+}
+.messageIcon {
+    opacity: 1;
+}
+/* ----- */
+
+.letterContainer {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+}
+.TitleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size:1.5rem;
+    margin-left: 1.875rem;
+    margin-top:2.56rem;
+    margin-bottom: 1rem;
+}
+.TitleContainer > i {
+    color: #929DA9;
+    margin-left: 0.32rem;
+}
+.letterTitle {
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-style: normal;
+    font-weight: bold;
+    line-height: 114%;
+
+    display: flex;
+    align-items: center;
+
+}
+.letterInfo {
+    margin: 0 auto;
+    background-color:#D5FCEA;
+    width: 90%;
+    color: #25D482;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-size:0.75rem;
+    padding:2%;
+    border-radius:8px;
+}
+.letterInfo2 {
+    color: #929DA9;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-size: 1.125rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 50%;
+}

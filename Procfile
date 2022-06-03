@@ -1,0 +1,1 @@
+web: gunicorn yonkoring.wsgi --log-file -

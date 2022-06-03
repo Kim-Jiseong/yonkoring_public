@@ -1,0 +1,247 @@
+{% extends 'base.html' %}{% load static %}{% load pwa %} 
+
+{% block css %}
+{% progressive_web_app_meta %}
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0"/>
+<link rel="stylesheet" type="text/css" href="{% static 'join_done.css' %}">
+<script type="text/javascript"> 
+function getCookie(name) { 
+  var cookie = document.cookie; 
+  if (document.cookie != "") { 
+    var cookie_array = cookie.split("; "); 
+    for ( var index in cookie_array) { 
+      var cookie_name = cookie_array[index].split("="); 
+      if (cookie_name[0] == "popupYN") { 
+        return cookie_name[1]; } } } 
+        return ; } 
+        
+        function openPopup(url) { 
+          var cookieCheck = getCookie("popupYN"); 
+          if (cookieCheck != "N") window.open(url, '', 'width=450,height=750,left=0,top=0') } 
+          </script>
+<div class="black_bg"></div>
+{% endblock %}
+{% block content %}
+
+
+<p id="info_btn" style="cursor:pointer; font-size:0.875rem; color: #929DA9; text-align:right; font-weight:500; margin-right:7%; margin-top:36px;">연고링 사용방법</p>
+<div class="titleContainer">
+  <div id="beta">Beta</div>
+  <div id="title_info1">
+    다양한 연고대 친구들과
+  </div>
+  <div id="title_wrapper">
+    <div id="title">일상, 고민, 관심사<br>이야기 해볼까?</div>
+  </div>
+</div>
+<!-- 패치노트 팝업부분 -->
+<div style="display:none;" id="popup_layer">
+  <div class="popup_box">
+      <!--팝업 컨텐츠 영역-->
+      <div class="popup_cont">
+          <h2>[ How to make Popup ]</h2>
+          <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and 
+          scrambled it to make a type specimen book.
+          </p>
+      </div>
+      <!--팝업 버튼 영역-->
+      <div class="popup_btn">
+          <!--하루동안 보지않기-->
+          <a id="chk_today" href="javascript:closeToday();" class="close_day">Do not open for a day</a> 
+          <!--7일간 보지않기-->
+          <!-- <a id="chk_today" href="javascript:closeToday();" class="close_day">Do not open for 7 days</a>-->
+          <a href="javascript:closePop();">닫기</a>
+      </div>
+  </div>
+</div>
+    
+
+{% if my_school_auth != 0 %}
+<div class="filterButton" id="modal_btn" type="submit">
+  <div class="login_text">필터링 설정하기</div>
+</div>
+<div class="modal_wrap">
+  <form method="POST" action="{% url 'yk:join_done' %}">
+    {% csrf_token %}
+    <div style="display: flex; width:100%; justify-content:space-between; align-items:center;">
+      <div class="cancel"><i class="fas fa-arrow-left"></i></div>
+      <button style="font-family:'Spoqa Han Sans Neo'; cursor:pointer; border-style: none; background:none; font-size: 0.875rem; font-weight: 700;line-height: 164%;text-align: center;color: #25D482;"  id="submit" type="submit">확인</button>
+    </div>
+
+    <div style="text-align:center;">
+      <h3>상대방의 성별을 선택해주세요</h3>
+      <p>성별을 적용하는 경우 통화연결이 지연될 수 있어요!</p>
+    </div>
+    <div class="radioWrapper" style="display:flex; justify-content: space-between;">
+      {% if want_gender == '여자' %}
+        <input type="radio" id="female" name="gender" value="여자" checked><label for="female">여성</label>
+        <input type="radio" id="male" name="gender" value="남자"><label for="male">남성</label>
+        <input type="radio" id="both" name="gender" value="both"><label for="both"></label>모두</label>
+      {% elif want_gender == '남자' %}
+        <input type="radio" id="female" name="gender" value="여자"><label for="female">여성</label>
+        <input type="radio" id="male" name="gender" value="남자" checked><label for="male">남성</label>
+        <input type="radio" id="both" name="gender" value="both"><label for="both">모두</label>
+      {% else %}
+        <input type="radio" id="female" name="gender" value="여자"><label for="female">여성</label>
+        <input type="radio" id="male" name="gender" value="남자"><label for="male">남성</label>
+        <input type="radio" id="both" name="gender" value="both" checked><label for="both">모두</label>
+      {% endif %}
+    </div>
+    </form>
+</div>
+<div class="info_modal">
+  <div style="display: flex; width:100%; justify-content:space-between; align-items:center;">
+    <div class="infoCancel" style="cursor: pointer; color: #12121D; margin-left: 8%;"><i class="fas fa-arrow-left"></i></div>
+  </div>
+  <h2 style="color:#25D482;">연고링 사용 방법</h2>
+  <p style="width:82%;">1. 연고링 보이스톡은 오후 10시부터 12시까지만  열려요!<br>
+    ※ 쪽지는 시간제약 없이 24시간동안 보낼 수 있어요.<br>
+    2. ‘친구들과 대화하기’를 누르면 랜덤 매칭으로  친구들과  7분 동안 보이스톡을 즐길 수 있어요.<br>
+    3.  통화가 끝나면 친구 신청을 보내고 쪽지로 더 친해져 보세요!</p>
+  <a rel="noopener noreferrer" target="_blank" href="https://ykring.notion.site/ykring/8-030bf6f3750243b2b7e1becb7c0b0a50">연고링 서비스 더 알아보기</a>
+</div>    
+    <a class="call_ok">
+      <div class="callButton" type="submit" id="modal_btn2">
+        <div class="login_text">친구들 찾아보기</div>
+      </div>
+      <div class="modal_wrap2" style="display: none;">
+          <div class="modal_text" style="text-align:center;">
+          </div>
+          <button class="cancel2" style="font-family:'Spoqa Han Sans Neo'; cursor:pointer; border-style: none; background:none;font-size: 0.875rem; font-weight: 700;line-height: 164%; text-align: center; color: #25D482;"  id="submit" type="submit">확인</button>
+      </div>
+    </a>
+      
+    
+    <div class="tutorial">
+      <p><b>주의사항!</b><br> 
+        1. 원활한 통화를 위해서는 꼭!! <b>크롬 혹은 사파리로 접속</b>해주세요! <br>
+        2. 통화하기를 누른 후 <b>'마이크 허용'</b>을 해주셔야 통화를 즐길 수 있어요!<br>
+        3. <b>베타버전</b>으로 오류가 발생할 수 있어요! 피드백 부탁드립니다:)<br>
+      </p>
+    </div>
+    {% else %}
+    <p style="margin-top: 30%;text-align:center; font-size: 0.875rem; color:#25D482; font-family: 'Spoqa Han Sans Neo';">학교 인증 사진만 올리시면 바로 서비스 사용이 가능해요!</p>
+    <a href="{% url 'yk:school_auth' %}">
+      <div class="callButton" type="submit">
+        <div class="login_text">인증하고 바로 사용하기</div>
+      </div>
+    </a>
+    <div class="certifTutorial">
+      <p><strong>인증방법</strong><br>
+        학교 인증 사진 업로드를 하시면 바로 서비스 사용이 가능하세요.<br>
+        <strong>합격 증명 사진/ 포털 사이트 & 학생증 사진 / 졸업 증명 사진 </strong>중 1개를 선택해서 업로드해 주세요.<br>
+        <strong>꼭! 학번이 나오게 찍어주세요.</strong>(이 외의 다른 정보는 가리셔도 괜찮아요. 학교 확인 용도로만 사용되며 확인 이후 즉시 폐기 됩니다.))</p>
+    </div>
+    {% endif %}
+
+    <!-- {% if my_school_auth != 0 %}
+      <script>
+      window.onload = function() {
+        const footer = document.querySelector(".footer")
+
+        footer.style.display = "flex"
+      };
+      </script>
+    {% endif %} -->
+
+<script>
+const modal = document.querySelector(".modal_wrap")
+const bg = document.querySelector(".black_bg")
+const btnModal = document.getElementById("modal_btn")
+btnModal.addEventListener("click", e => {
+    modal.style.display = "flex"
+    bg.style.display = "flex"
+})
+const cancel = document.querySelector(".cancel")
+cancel.addEventListener("click", e => {
+
+  modal.style.display = "none"
+
+bg.style.display = "none"
+})
+const infoModalBtn = document.getElementById("info_btn")
+const infoModal = document.querySelector(".info_modal")
+infoModalBtn.addEventListener('click', e => {
+  infoModal.style.display = "flex"
+  bg.style.display = "flex"
+})
+const infoCancel = document.querySelector(".infoCancel")
+infoCancel.addEventListener("click", e => {
+  infoModal.style.display = "none"
+  bg.style.display = "none"
+})
+
+
+</script>
+<script>
+  //브라우저의 종류 확인
+  function getBroswerName() {
+      //userAgent값을 모두 소문자로 변환하여 변수에 대입
+      var agt = navigator.userAgent.toLowerCase();
+      
+      //카카오톡
+      if(agt.indexOf("kakaotalk") != -1 || agt.indexOf("Instagram") != -1) {
+          return false;
+      }
+      //나머지
+      else {
+          return true;
+      }
+  };
+  
+function getTime() {
+  let day = new Date();
+  let time=day.getHours();
+  
+  //통화 불가능한 시간
+  if(0<=Number(time) && Number(time)<=21) {
+    const modal = document.querySelector(".modal_wrap2")
+    const bg = document.querySelector(".black_bg")
+    const btnModal = document.getElementById("modal_btn2")
+    btnModal.addEventListener("click", e => {
+        modal.style.display = "flex"
+        bg.style.display = "flex"
+        document.querySelector(".modal_text").innerHTML = '<h3>10시에 만나요</h3><p>연고링 통화 서비스는<br>10시부터 자정 12시까지만 열려요:)</p>';
+    })
+    const cancel = document.querySelector(".cancel2")
+    cancel.addEventListener("click", e => {
+
+      modal.style.display = "none"
+
+      bg.style.display = "none"
+    })
+  
+  }
+  //통화 가능한 시간
+  else{
+    if(getBroswerName()){
+      let callOk = document.querySelector('.call_ok');
+      callOk.setAttribute("href", "{% url 'ykagora:agora-index' %}")
+    }
+    else{
+      const modal = document.querySelector(".modal_wrap2")
+      const bg = document.querySelector(".black_bg")
+      const btnModal = document.getElementById("modal_btn2")
+      btnModal.addEventListener("click", e => {
+          modal.style.display = "flex"
+          bg.style.display = "flex"
+          document.querySelector(".modal_text").innerHTML = '<h3>다른 브라우저로 접속해주세요.</h3><p>크롬, 사파리를 권장합니다.</p>';
+          
+      })
+      const cancel = document.querySelector(".cancel2")
+      cancel.addEventListener("click", e => {
+        modal.style.display = "none"
+        bg.style.display = "none"
+      })
+    }
+  }
+}
+
+getTime();
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% if user.is_authenticated or group %}
+  <button  id="webpush-subscribe-button" {% if class %}class="{{ class }}"{% endif %} {% if group %}data-group="{{ group }}"{% endif %} data-url="{{ webpush_save_url }}">
+    <i class="fas fa-bell"></i> 쪽지 푸쉬알림
+  </button>
+  <script>
+    function btn(){ alert('브라우저 알림표시를 허용해주세요. (현재 안드로이드에서만 푸시 알림이 지원됩니다)'); }
+  </script>
+{% endif %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'letter_write.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="header">
+    <a href="{% url 'yk:letter_detail' friend.pk %}"><i class="fas fa-arrow-left" ></i></a> <p><strong>쪽지 보내기 </strong>to. {{ friend.profile.all.first.nickname }}</p>
+  </div>
+  <div style="width:100%; justify-content:center; text-align:center;">
+    <form method="POST">
+      {% csrf_token %}
+      <textarea required class="letterContent" name="letter_content" onkeydown="resize(this);"
+      onkeyup="resize(this);" placeholder="내용을 입력하세요. 매너있는 채팅 부탁드려요" ></textarea>
+      <br>
+      <button type="submit" >쪽지보내기</button>
+    </form>
+  </div>
+  
+  <script type="text/javascript">
+    function resize(obj) {
+        obj.style.height = "1px";
+        obj.style.height = (12 + obj.scrollHeight) + "px";
+    }
+
+
+</script>
+  {% endblock %}

@@ -1,0 +1,437 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'join1.css' %}">
+<div class="black_bg"></div>
+{% endblock %}
+{% block content %}
+    {% if my_profile %}
+    <div class="top-navbar">
+        <div id="back">
+           <i class="fas fa-arrow-left"></i>
+        </div>
+    </div>
+
+    <div class="info_modal">
+        <p style="color:#12121D">회원가입을 취소하시겠어요?</p>
+        <div style="display: flex; width:50%; justify-content:space-between; align-items:center;">
+            <div style="cursor: pointer; color: #12121D; margin-left: 8%;"><a href="{% url 'yk:delete_user' %}">예</a></div>
+            <div style="width:1px; height: 20px;  background: #929DA9;"></div>
+            <div class="infoCancel" style="cursor: pointer; color: #12121D; margin-right: 8%;">아니오</div>
+        </div>
+    </div>    
+
+    <form action="{% url 'registrations:join1'%}" method="POST" enctype="multipart/form-data">
+
+
+        <header class="header">
+            <div id="header_title">프로필 만들기</div>
+            <!-- <div id="place"><i class="fas fa-map-marker-alt" style="margin-right: 3px;"></i>{{ user.profile.address }}</div> -->
+            <!-- 장고문법으로 지역 받아오는거로 바꾸면 됩니다 -->
+        </header>
+        <div class="profile_img_container">
+            <div class="profile_img_wrapper" id="profile_img_wrapper">
+                <img src="{{my_profile.profile_image.url}}" alt="" style="width: 90px; height: 90px; border-radius:120px;">
+                
+            </div>
+            <div class="image-show" id="image-show" style="border-radius:120px; overflow:hidden;"></div>
+                <div class="image-upload" id="image-upload">
+
+                        {% csrf_token %}
+                        <div class="button">
+                            <label for="chooseFile">
+                                프로필 사진 파일 선택
+                            </label>
+                        </div>
+                        <input type="file" id="chooseFile" name="image" accept="image/*"
+                            onchange="loadFile(this); showImage(this)" >
+
+
+                        <div class="fileContainer">
+                            <div class="fileInput">
+                                <p id="fileName"></p>
+                            </div>
+
+
+                        </div>
+                </div>
+                <div class="image-show" id="image-show"></div>
+            <div class="profileImage-text2">자신의 개성을 나타낼 수 있는 사진으로 업로드해주세요 :)</div>
+        </div>
+
+        <p style="margin-left: 7%;">필수 정보를 입력해주세요</p>
+        <div class="name_wrapper  wrapper">
+            <input required class="input_name input" type="text" placeholder="닉네임" name="name"
+                value="{{ my_profile.nickname }}">
+        </div>
+        <div class="school_wrapper  wrapper">
+            <select class="input_school input" name='school' required>
+                <option value="{{ my_profile.school }}"> {{ my_profile.school }}</option>
+                <option value="고려대학교">고려대학교</option>
+                <option value="연세대학교">연세대학교</option>
+            </select>
+            <!-- <div id="hide"> -->
+                <!-- 비공개 관련해서는 이곳 또는 밑에 스크립트에 넣어주시면 됩니다 -->
+            <!--<i onclick="togglecheck(this)" class="far fa-check-circle" value='block'></i>
+                <div
+                    style="margin-left: 5px; color: #5A6474; font-family: 'Spoqa Han Sans Neo', 'sans-serif'; font-size:15px;">
+                    비공개</div>
+            </div> -->
+        </div>
+        <div class="age_wrapper  wrapper">
+            <select required class="input_age input" name="age">
+                <option value="{{ my_profile.age }}">{{ my_profile.age }}</option>
+                <option value="20대 초반">20대 초반</option>
+                <option value="20대 중반">20대 중반</option>
+                <option value="20대 후반">20대 후반</option>
+                <option value="30대 초반">30대 초반</option>
+                <option value="30대 중반">30대 중반</option>
+                <option value="30대 후반">30대 후반</option>
+            </select>
+        </div>
+        
+
+    <div class="address_wrapper wrapper">
+        <select class="address_input input" name='address' required onchange="handleOnChange(this)">
+            <option value="{{ my_profile.address }}">{{ my_profile.address }}</option>
+            <option value="서울">서울</option>
+            <option value="경기 분당 수원권">경기 분당 수원권</option>
+            <option value="경기 안양 과천 부천권">경기 안양 과천 부천권</option>
+            <option value="경기 구리 남양주 하남권">경기 구리 남양주 하남권</option>
+            <option value="경기 의정부 파주 고양권">경기 의정부 파주 고양권</option>
+            <option value="인천">인천</option>
+            <option value="대전">대전</option>
+            <option value="충북">충북</option>
+            <option value="충남">충남</option>
+            <option value="강원">강원</option>
+            <option value="부산">부산</option>
+            <option value="경북">경북</option>
+            <option value="경남">경남</option>
+            <option value="대구">대구</option>
+            <option value="울산">울산</option>
+            <option value="광주">광주</option>
+            <option value="전북">전북</option>
+            <option value="전남">전남</option>
+            <option value="제주">제주</option>
+        </select>
+        <select class="address_input input input_more" name="address_more" style="display: none;">
+            <option value="">상세지역</option>
+            {% for address in address_more %}
+            <option value="{{address}}">{{address}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mbti_wrapper wrapper">
+        <select class="mbti_input input" name='mbti' required>
+            <option value="{{ my_profile.mbti }}">{{ my_profile.mbti }}</option>
+            <option value="INTJ">INTJ 용의주도한 전략가</option>
+            <option value="INTP">INTP 논리적인 사색가</option>
+            <option value="ENTJ">ENTJ 대담한 통솔자</option>
+            <option value="ENTP">ENTP 논쟁즐기는 변론가</option>
+            <option value="INFJ">INFJ 선의의 옹호자</option>
+            <option value="INFP">INFP 열정적인 중재자</option>
+            <option value="ENFJ">ENFJ 정의로운 사회운동가</option>
+            <option value="ENFP">ENFP 재기발랄한 활동가</option>
+            <option value="ISTJ">ISTJ 청렴결백 논리주의자</option>
+            <option value="ISFJ">ISFJ 용감한 수호자</option>
+            <option value="ESTJ">ESTJ 엄격한 관리자</option>
+            <option value="ESFJ">ESFJ 사교적인 외교관</option>
+            <option value="ISTP">ISTP 만능재주꾼</option>
+            <option value="ISFP">ISFP 호기심 많은 예술가</option>
+            <option value="ESTP">ESTP 모험즐기는 사업가</option>
+            <option value="ESFP">ESFP 자유영혼 연예인</option>
+            <option value="UUUU">UUUU 까먹었어요</option>
+            <option value="CUTE">CUTE 깜찍해요</option>
+            <option value="SEXY">SEXY 훌륭해요</option>
+        </select>
+
+    </div>
+    <div id="intro_info">성별</div>
+    <div class="gender_wrapper wrapper">
+        <select class="input_gender input" name='gender' required>
+            {% if my_profile.gender == '남자' %}
+            <option value="남자">남자</option>
+            {% else %}
+            <option value="여자">여자</option>
+            {% endif %}
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
+        </select>
+    </div>
+
+    <div id="intro_info">개성있는 자기소개! *</div>
+    <div class="intro_urself">
+        <textarea name="introduce" class="introduce" required onkeydown="resize(this);" onkeyup="resize(this);"
+            placeholder="tip. 어떤 친구와 대화하고 싶은지 적어두면 더 좋아요!&#13;&#10;&#13;&#10;예시) 미대에 다니는 다양한 삶을 살고싶어하는 미개봉화석^^ 요즘 스타트업에 관심이 생겨서 관련하신 분들과 이야기하면 좋을 것 같아용 ㅎㅎ">{{ my_profile.bio }}</textarea>
+    </div>
+
+    <div id="page">1/2 페이지</div>
+    <div class="buttonWrapper">
+        <button id="submit" type="submit" onclick="dontDoubleClick(this);">가입하기</button>
+    </div>
+    <div id="yb"></div>
+    </form>
+
+    {% else %}
+    <div class="info_modal">
+        <p style="color:#12121D">회원가입을 취소하시겠어요?</p>
+        <div style="display: flex; width:50%; justify-content:space-between; align-items:center;">
+            <div style="cursor: pointer; color: #12121D; margin-left: 8%;"><a href="{% url 'yk:delete_user' %}">예</a></div>
+            <div style="width:1px; height: 20px;  background: #929DA9;"></div>
+            <div class="infoCancel" style="cursor: pointer; color: #12121D; margin-right: 8%;">아니오</div>
+        </div>
+    </div>    
+<div class="top-navbar">
+    <div id="back">
+       <i class="fas fa-arrow-left"></i>
+    </div>
+</div>
+<form action="{% url 'registrations:join1'%}" method="POST" enctype="multipart/form-data">
+
+    <header class="header">
+        <div id="header_title">프로필 만들기</div>
+    </header>
+    <div class="profile_img_container">
+        <div class="profile_img_wrapper" id="profile_img_wrapper">
+            <img src="{% static 'default_photo.png' %}" alt="" style="width: 90px; height: 90px; border-radius:120px;">
+        </div>
+        <div class="image-show" id="image-show" style="border-radius:120px; overflow:hidden;"></div>
+            <div class="image-upload" id="image-upload">
+                    {% csrf_token %}
+                    <div class="button">
+                        <label for="chooseFile">
+                            프로필 사진 파일 선택
+                        </label>
+                    </div>
+                    <input required type="file" id="chooseFile" name="image" accept="image/*" onchange="loadFile(this); showImage(this)">
+                    <div class="fileContainer">
+                        <div class="fileInput">
+                            <p id="fileName"></p>
+                        </div>
+                    </div>
+            </div>
+            <div class="image-show" id="image-show"></div>
+        <div class="profileImage-text2">자신의 개성을 나타낼 수 있는 사진으로 업로드해주세요 :)</div>
+    </div>
+
+    <p style="margin-left: 7%;">필수 정보를 입력해주세요</p>
+    <div class="name_wrapper  wrapper">
+        <input required class="input_name input" type="text" placeholder="닉네임" name="name">
+    </div>
+    <div class="school_wrapper  wrapper">
+        <select class="input_school input" name='school' required>
+            <option value="">학교</option>
+            <option value="고려대학교">고려대학교</option>
+            <option value="연세대학교">연세대학교</option>
+        </select>
+        <!-- <div id="hide"> -->
+            <!-- 비공개 관련해서는 이곳 또는 밑에 스크립트에 넣어주시면 됩니다 -->
+            <!-- <i onclick="togglecheck(this)" class="far fa-check-circle" value='block'></i>
+            <div
+                style="margin-left: 5px; color: #5A6474; font-family: 'Spoqa Han Sans Neo', 'sans-serif'; font-size:15px;">
+                비공개</div>
+        </div>  -->
+    </div>
+    <div class="age_wrapper  wrapper">
+        <select required class="input_age input" name="age">
+            <option value="">나이</option>
+            <option value="20대 초반">20대 초반</option>
+            <option value="20대 중반">20대 중반</option>
+            <option value="20대 후반">20대 후반</option>
+            <option value="30대 초반">30대 초반</option>
+            <option value="30대 중반">30대 중반</option>
+            <option value="30대 후반">30대 후반</option>
+        </select>
+    </div>
+    
+
+    <div class="address_wrapper  wrapper">
+        <select class="address_input input" name='address' required onchange="handleOnChange(this)">
+            <option value="">지역</option>
+            <option value="서울">서울</option>
+            <option value="경기 분당 수원권">경기 분당 수원권</option>
+            <option value="경기 안양 과천 부천권">경기 안양 과천 부천권</option>
+            <option value="경기 구리 남양주 하남권">경기 구리 남양주 하남권</option>
+            <option value="경기 의정부 파주 고양권">경기 의정부 파주 고양권</option>
+            <option value="인천">인천</option>
+            <option value="대전">대전</option>
+            <option value="충북">충북</option>
+            <option value="충남">충남</option>
+            <option value="강원">강원</option>
+            <option value="부산">부산</option>
+            <option value="경북">경북</option>
+            <option value="경남">경남</option>
+            <option value="대구">대구</option>
+            <option value="울산">울산</option>
+            <option value="광주">광주</option>
+            <option value="전북">전북</option>
+            <option value="전남">전남</option>
+            <option value="제주">제주</option>
+        </select>
+        <select class="address_input input input_more" name="address_more" style="display: none;">
+            <option value="">상세지역</option>
+            {% for address in address_more %}
+            <option value="{{address}}">{{address}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mbti_wrapper  wrapper">
+        <select class="mbti_input input" name='mbti' required>
+            <option value="">MBTI</option>
+            <option value="INTJ">INTJ 용의주도한 전략가</option>
+            <option value="INTP">INTP 논리적인 사색가</option>
+            <option value="ENTJ">ENTJ 대담한 통솔자</option>
+            <option value="ENTP">ENTP 논쟁즐기는 변론가</option>
+            <option value="INFJ">INFJ 선의의 옹호자</option>
+            <option value="INFP">INFP 열정적인 중재자</option>
+            <option value="ENFJ">ENFJ 정의로운 사회운동가</option>
+            <option value="ENFP">ENFP 재기발랄한 활동가</option>
+            <option value="ISTJ">ISTJ 청렴결백 논리주의자</option>
+            <option value="ISFJ">ISFJ 용감한 수호자</option>
+            <option value="ESTJ">ESTJ 엄격한 관리자</option>
+            <option value="ESFJ">ESFJ 사교적인 외교관</option>
+            <option value="ISTP">ISTP 만능재주꾼</option>
+            <option value="ISFP">ISFP 호기심 많은 예술가</option>
+            <option value="ESTP">ESTP 모험즐기는 사업가</option>
+            <option value="ESFP">ESFP 자유영혼 연예인</option>
+            <option value="UUUU">UUUU 까먹었어요</option>
+            <option value="CUTE">CUTE 깜찍해요</option>
+            <option value="SEXY">SEXY 훌륭해요</option>
+        </select>
+
+    </div>
+    <div id="intro_info">성별을 선택해 주세요 *</div>
+    <div class="gender_wrapper  wrapper">
+        <select class="input_gender input" name='gender' required>
+            <option value="">성별</option>
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
+        </select>
+    </div>
+
+    <div id="intro_info">개성있는 자기소개! *</div>
+    <div class="intro_urself">
+        <textarea name="introduce" class="introduce" required onkeydown="resize(this);" onkeyup="resize(this);"
+            placeholder="tip. 어떤 친구와 대화하고 싶은지 적어두면 더 좋아요!&#13;&#10;&#13;&#10;예시) 미대에 다니는 다양한 삶을 살고싶어하는 미개봉화석^^ 요즘 스타트업에 관심이 생겨서 관련하신 분들과 이야기하면 좋을 것 같아용 ㅎㅎ"></textarea>
+    </div>
+
+    <div id="page">1/2 페이지</div>
+    <div class="buttonWrapper">
+        <button id="submit" type="submit" onclick="dontDoubleClick(this); CheckForm()">가입하기</button>
+    </div>
+    <div id="yb"></div>
+    </form>
+
+
+    {% endif %}
+    <script>
+        function dontDoubleClick(target) {
+        setTimeout(() => target.disabled= true, 10);
+        setTimeout(() => target.disabled= false, 1000);
+}
+        // picture here
+        function togglecheck(x) {
+            x.classList.toggle("fas");
+            // 또는 비공개 관련해서 이곳에 넣어주시면 됩니다
+        }
+        function resize(obj) {
+            obj.style.height = "1px";
+            obj.style.height = (12 + obj.scrollHeight) + "px";
+        }
+////
+        // var submit = document.getElementById('submitButton');
+        // submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
+
+        function showImage(input) {
+            if (input.files && input.files[0].size > (5 * 1024 * 1024)) {
+            alert("이미지 용량 5mb 이하로 부탁드려요 :)");
+            input.value = null;
+            } else {
+            var newImage = document.getElementById('image-show').lastElementChild;
+            newImage.style.visibility = "visible";
+    
+            document.getElementById('profile_img_wrapper').style.visibility = 'hidden';
+            document.getElementById('image-show').style.zIndex = 100;
+    
+            //document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
+            }
+        }
+
+        function loadFile(input) {
+            if (input.files && input.files[0].size < (5 * 1024 * 1024)) {
+            var file = input.files[0];
+
+            var name = document.getElementById('fileName');
+            name.textContent = file.name;
+
+            if (document.querySelector(".img")) {
+                var arr = document.querySelectorAll(".img");
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i].style.display = 'none';
+                }
+            }
+
+            var newImage = document.createElement("img");
+            newImage.setAttribute("class", 'img');
+
+            newImage.src = URL.createObjectURL(file);
+
+            newImage.style.width = "90px";
+            newImage.style.height = "90px";
+            newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
+            newImage.style.objectFit = "cover";
+
+            var container = document.getElementById('image-show');
+            container.appendChild(newImage);
+        }
+        };
+        ////////
+
+        // 이미지, 학교, mbti는 입력하지 않았을 시 알림이 뜨지 않아 따로 alert 처리 [성별은 안 돼서 일단 안 함]
+        function CheckForm() {
+            const previous_input_name = new Array("name", "school", "address", "age", "mbti", "introduce")
+            for (i = 0; i < 6; i++) {
+                if (document.getElementsByName(previous_input_name[i])[0].value == "") {
+                    return
+                }
+            }
+            const input = document.getElementsByName("image")[0];
+            if (input.value == "") {
+                alert('이미지를 입력하세요.')
+            }
+        }
+    </script>
+    <script>
+        function handleOnChange(e) {
+            // 선택된 데이터의 텍스트값 가져오기
+            let text = e.options[e.selectedIndex].text;
+            
+            if(text == '서울'){
+                document.querySelector('.address_input').style.width = "40%"
+                document.querySelector('.input_more').style.display = 'block'
+                document.querySelector('.input_more').style.width = "40%"
+                document.querySelector('.input_more').setAttribute("required", "true");
+                document.querySelector('.address_input').style.margin = "0 10px 0 0";
+            }
+            else{
+                document.querySelector('.address_input').style.width = "84%"
+                document.querySelector('.input_more').style.display = 'none'
+                document.querySelector('.input_more').removeAttribute("required");
+            }
+            
+          }
+        const bg = document.querySelector(".black_bg")
+        const infoModalBtn = document.getElementById("back")
+        const infoModal = document.querySelector(".info_modal")
+        infoModalBtn.addEventListener('click', e => {
+        infoModal.style.display = "flex"
+        bg.style.display = "flex"
+        })
+        const infoCancel = document.querySelector(".infoCancel")
+        infoCancel.addEventListener("click", e => {
+        infoModal.style.display = "none"
+        bg.style.display = "none"
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'friend_profile.css' %}">
+
+{% endblock %}
+{% block content %}
+<div class="top-navbar">
+    <div id="back">
+        <a href="javascript:history.back()"><i class="fas fa-arrow-left"></i></a>
+    </div>
+</div>
+<div class="profImgContainer">
+    <img src="{{profile.profile_image.url}}" class="img" alt="" />
+    <div class="filterBox" style="position:absolute;"></div>
+    <div class="nickname" style="position:absolute;">{{profile.nickname}}</div>
+    <div class="selfInfoJob" style="position:absolute;">{{self_info.text}}</div>
+
+</div>
+<div class="infoContainer">
+    <p class="bio">{{profile.bio}}</p>
+    <br>
+    <a class="introTitle">목표/버킷리스트</a>
+    <p class="info2 info">{{profile.goal}}</p>
+    <br>
+    <a class="introTitle">Detail</a>
+    <p class="info"><strong>성별:</strong> {{profile.gender}}</p>
+    <p class="info1 info"><strong>나이:</strong> {{profile.age}}</p>
+    <p class="info1 info"><strong>학교:</strong> {{profile.school}}</p>
+    <p class="info1 info"><strong>MBTI:</strong> {{profile.mbti}}</p>
+    <p class="info3 info"><strong>위치:</strong> {{profile.address}}</p>
+    <p class="info3 info"><strong>활동이력:</strong> {{profile.club}}</p>
+
+
+
+
+    <br>
+    <a class="introTitle">관심사</a>
+    
+    <p class="interests info">#{{ profile.interest }}</p>
+    {% comment %} 근데 이거 제대로 구분 되나요 {% endcomment %}
+    
+</div>
+    <br>
+    <br>
+
+    {% endblock %}

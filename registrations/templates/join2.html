@@ -1,0 +1,97 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'join2.css' %}">
+{% endblock %}
+{% block content %}
+    {% if not self_info %}
+    <div class="container">
+        <div class="top-navbar">
+            <div id="back">
+                <a href="{% url 'registrations:join1' %}"><i class="fas fa-arrow-left"></i></a>
+            </div>
+        </div>
+        <header class="header">
+            <div id="header_title">마지막! 어떤 사람인가요?</div>
+            <div id="header_info">관련계열이나 직업으로 회원님을 알려주세요. </div>
+        </header>
+        <form action="{% url 'registrations:join2' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="self_info_wrapper">
+                <input required class="self_info" type="text" placeholder="입력하기 *" maxlength="8"
+                 id="self_info_input" name="self_info">
+                <span id="textLengthCheck">0/자</span>
+                <div class="self_info_info">
+                    예시) 졸업생/취업준비생/새내기/대학생/예술가/마케터/디자이너/백수/개발자/프리랜서/운동선수 등
+                </div>
+            </div>
+            <header class="header">
+                <div id="header_title">현재 나의 목표는?</div>
+                <div id="header_info">목표나 하고싶은 일이 비슷한 친구들을 만나보세요!</div>
+            </header>
+            <div class="intro_urself">
+                <textarea name="introduce" class="introduce" required onkeydown="resize(this);" onkeyup="resize(this);"
+                    placeholder="ex) &#13;&#10;방학때 코딩 공부&#13;&#10;미라클 모닝 &#13;&#10;사랑니빼기 &#13;&#10;부모님께 효도하자 *"></textarea>
+            </div>
+            <div id="page">2/2 페이지</div>
+            <div class="buttonWrapper">
+                <button id="submit" type="submit">가입하기</button>
+            </div>
+            <div id="yb"></div>
+        </form>
+{% else %}
+<div class="container">
+    <div class="top-navbar">
+        <div id="back">
+            <a href="{% url 'registrations:join1' %}"><i class="fas fa-arrow-left"></i></a>
+        </div>
+    </div>
+    <header class="header">
+        <div id="header_title">마지막! 어떤 사람인가요?</div>
+        <div id="header_info">관련계열이나 직업으로 회원님을 알려주세요. </div>
+    </header>
+    <form action="{% url 'registrations:join2' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="self_info_wrapper">
+            <input required class="self_info" type="text" placeholder="입력하기 *" maxlength="8" id="self_info_input"
+                name="self_info" value="{{ self_info }}">
+            <span id="textLengthCheck">0/자</span>
+            <div class="self_info_info">
+                예시) 졸업생/취업준비생/새내기/대학생/예술가/마케터/디자이너/백수/개발자/프리랜서/운동선수 등</div>
+        </div>
+        <header class="header">
+            <div id="header_title">현재 나의 목표는?</div>
+            <div id="header_info">목표나 하고싶은 일이 비슷한 친구들을 만나보세요!</div>
+        </header>
+        <div class="intro_urself">
+            <textarea name="introduce" class="introduce" required onkeydown="resize(this);"
+                onkeyup="resize(this);" placeholder="ex) &#13;&#10;방학때 코딩 공부&#13;&#10;미라클 모닝 &#13;&#10;사랑니빼기 &#13;&#10;부모님께 효도하자 *">{{ goal }}</textarea>
+        </div>
+        <div id="page">2/2 페이지</div>
+        <div class="buttonWrapper">
+            <button id="submit" type="submit">가입하기</button>
+        </div>
+        <div id="yb"></div>
+    </form>
+        {% endif %}
+
+    <script type="text/javascript">
+        function resize(obj) {
+            obj.style.height = "1px";
+            obj.style.height = (12 + obj.scrollHeight) + "px";
+        }
+    </script>
+
+    <script>
+        const self_info_input = document.querySelector("#self_info_input");
+        const textLengthCheck = document.querySelector("#textLengthCheck");
+        self_info_input.addEventListener("keyup", event => { 
+            if (self_info_input.value.length <= 8)
+                textLengthCheck.innerText = self_info_input.value.length + "/8자";
+            else 
+                textLengthCheck.innerText = "8/8자";
+        })
+    </script>
+
+{% endblock %}

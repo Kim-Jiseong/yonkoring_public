@@ -1,0 +1,40 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'delete_user.css' %}">
+{% endblock %}
+{% block content %}
+<div class="deleteContainer">
+<button id="back" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+    <h2 style="margin-bottom: 30px;">계정을 삭제하시겠어요?</h2>
+    <p>계정을 삭제하면 회원님의 모든 정보는 삭제되어 복구할 수 없으니 신중하게 결정해주세요.<br>
+        <br>
+        혹시 이용 과정에서 불편한 점이 있으셨다면 서비스 문의하기로 내용을 남겨주세요.<br> 
+        <br>
+        연고링을 이용해주셔서 감사합니다. 더 발전하는 연고링 서비스가 되겠습니다.</p>
+    <div>
+        <input id="sureDelete" type="checkbox">
+        <label for="sureDelete">유의사항을 모두 확인했으며, 탈퇴하겠습니다.</label>
+    </div>
+<div style="width: 100%; display:flex; justify-content:center;">
+    <button style="cursor: pointer;" class="submitSure" onclick="location.href='{% url 'yk:delete_user' %}';" disabled="true">계정 삭제하기</button>
+</div>
+    </div>
+<script>
+    const sureDelete = document.getElementById("sureDelete");
+    const submitSure = document.querySelector(".submitSure");
+    sureDelete.addEventListener("click", function() {
+        if (submitSure.disabled == true){
+            submitSure.disabled = false;
+            submitSure.style.backgroundColor = "#25D482"
+           
+        } 
+        else if(submitSure.disabled == false){
+            submitSure.style.backgroundColor ="#A7B0C0"
+            submitSure.disabled = true;
+        }
+    });
+
+
+</script>
+{% endblock %}

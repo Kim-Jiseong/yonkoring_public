@@ -1,0 +1,117 @@
+{% extends 'base.html' %}{% load static %}
+{% load socialaccount %} {% providers_media_js %}
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'signup.css' %}" />
+
+{% endblock %}
+{% block content %}
+<form method="POST">
+  <div class="top-navbar">
+    <div style="display:flex;">
+      <a href="{% url 'registrations:main' %}"><i class="fas fa-arrow-left"></i></a>
+    </div > 
+  </div>
+  <h2>회원가입 시작</h2>
+  <p class="signUpInfo">연고링에 오신 것을 환영해요:)</p>
+  {% if error %}
+  <p style="color:red;">{{ error }}</p>
+  {% endif %}
+  
+    {% csrf_token %}
+    <div class="inputWrapper">
+      <i style="display:flex; font-size:20px;" class="far fa-envelope"></i><input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="loginInput" type="text" name="username" placeholder="이메일" required/>
+    </div>
+    <!-- <p class="info">아이디는 영어 대소문자, 숫자,밑줄 및 마침표만 사용해주세요. >> 구현x</p> -->
+    <div class="inputWrapper">
+      <i style="display:flex; font-size:20px;" class="fas fa-lock"></i><input class="loginInput" type="password" name="password" placeholder="비밀번호" minlength="6" maxlength="18" required />
+    </div>
+    <p class="info">※6-18자리 영문, 숫자, 특수문자 사용가능합니다.</p>
+    <input class="telInput" type="phone_number" name="phone_number" placeholder="전화번호 입력" minlength="11" maxlength="11" required pattern="[0-9]{11,11}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  />
+    <p class="info">전화번호는 중요 공지사항을 드리는 용도로 사용돼요!</p>
+    <div class="agreeContainer">
+      <div style="display:flex; justify-content: space-between;">
+        <div>
+          <input id="agreeForAll" type='checkbox' name='agree' value='selectall' onclick='agreeAll()'/>
+          <label id="agreeInfo" for="agree"><b style="color:#12121D">전체동의</b>(선택항목 포함)</label>
+          <br><span style="font-size:6px;color:#929DA9;">연고링 이용약관(필수), 연고링 개인정보 수집 및 이용동의(필수), 연고링 마케팅 수신 동의(선택)</span>
+        </div>
+        <div class="expand" onclick="show()"><i style="color:#929DA9;" class="fas fa-angle-double-down"></i></div>
+      </div>
+      <div id="agreeWrapper" class="hidden">
+        <div style="display:flex; justify-content: space-between;">
+          <div>
+            <input required type='checkbox' name='agree_items[]' value='esAgree1'/> 연고링 이용약관 <span id="es">(필수)</span>
+          </div>
+          <a href="https://ykring.notion.site/d9aaf675a78d4cfe935a5c218f99d56a" class="expand"><i style="color:#929DA9;" class="fas fa-angle-right"></i></a>
+        </div>
+        <div style="display:flex; justify-content: space-between;">
+          <div>
+            <input required type='checkbox' name='agree_items[]' value='esAgree2' /> 연고링 개인정보 수집 및 이용동의 <span id="es">(필수)</span>
+          </div>
+          <a href="https://ykring.notion.site/3e353b25e1ec48f38cff74970548c97f" class="expand"><i style="color:#929DA9;" class="fas fa-angle-right"></i></a>
+        </div>
+        <div style="display:flex; justify-content: space-between;">
+          <div>
+            <input type='checkbox' name='agree_items[]' value='mkAgree' /> 연고링 마케팅 수신 동의 <span style="color:#929DA9;">(선택)</span>
+          </div>
+          <a href="https://ykring.notion.site/b02bc5638be44fe99d11cef5df668d32" class="expand"><i style="color:#929DA9;" class="fas fa-angle-right"></i></a>
+        </div>
+      </div>
+    </div>    
+    <div  style="width: 100%; justify-content: center; display:flex; cursor: pointer;">
+      <button class="submitBtn" type="submit" onclick="dontDoubleClick(this);">가입하기</button>
+    </div>
+  
+</form>
+<script>
+function dontDoubleClick(target) {
+  setTimeout(() => target.disabled= true, 10);
+  setTimeout(() => target.disabled= false, 1000);
+}
+   // 동의 모두선택 / 해제
+const All = document.getElementById('agreeForAll');
+
+function agreeAll()  {
+  const checkboxes = document.getElementsByName('agree_items[]');
+  console.log('a')
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = All.checked;
+  })
+}
+
+// function selectAll(selectAll)  {
+//   const checkboxes 
+//        = document.getElementsByName('animal');
+  
+//   checkboxes.forEach((checkbox) => {
+//     checkbox.checked = selectAll.checked;
+//   })
+// }
+
+const agreeWrapper = document.getElementById('agreeWrapper');
+function show() {
+  agreeWrapper.classList.toggle('show')
+}
+
+
+
+
+  // let reg_email =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
+  //   if( !reg_email.document( $("input[name=username]").val() ) ) {
+  //       alert("올바른 이메일을 입력해주세요");
+  //       return;
+  //   }
+
+
+
+  // let reg_pw = /(?=.*[a-zA-ZS])(?=.*?[#?!@$%^&*-]).{6,10}/; // 문자와 특수문자 조합의 6~10 자리
+  // if( !reg_pw.document( $("input[name=password]").val() ) ) {
+  //       alert("올바른 비밀번호를 입력해주세요");
+  //       return;
+  //   }
+
+
+
+</script>
+{% endblock %}
